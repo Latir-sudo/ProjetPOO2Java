@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox prefHeight="610.0" prefWidth="748.0" spacing="30.0">
+         <children>
+            <HBox prefHeight="65.0" prefWidth="748.0" stylesheets="@../css/Utilisateur.css">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="324.0" spacing="20.0">
+                     <children>
+                        <FontIcon iconLiteral ="mdi-account" styleClass="icon-principal" stylesheets="@../css/Utilisateur.css" />
+                        <Label prefHeight="18.0" prefWidth="233.0" text="Gestion des utilisateurs">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg" />
+               </styleClass>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="748.0" spacing="20.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="275.0" stylesheets="@../css/Utilisateur.css">
+                     <children>
+                        <Icon content="SEARCH" prefHeight="62.0" prefWidth="30.0" />
+                        <TextField prefHeight="40.0" prefWidth="253.0" promptText=" Rechercher par nom ou matricule .." styleClass="white-bg" stylesheets="@../css/Utilisateur.css" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                  </HBox>
+                  <Icon content="PERSON" prefHeight="62.0" prefWidth="90.0" styleClass="icon-principal" stylesheets="@../css/Utilisateur.css" />
+                  <Region prefHeight="62.0" prefWidth="258.0" />
+                  <Button mnemonicParsing="false" styleClass="btn-ajout" stylesheets="@../css/Utilisateur.css" text="Ajouter un nouveau utilisateur" />
+               </children>
+            </HBox>
+            <TableView fx:id="tableau" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="id" prefWidth="30.0" text="ID" />
+                <TableColumn fx:id="nom" prefWidth="100.0" text="Nom" />
+                  <TableColumn fx:id="prenom" prefWidth="110.0" text="Prenom" />
+                  <TableColumn fx:id="matricule" prefWidth="75.0" text="Matricule" />
+                  <TableColumn fx:id="typeUtilisateur" prefWidth="100.0" text="Type" />
+                  <TableColumn fx:id="emprunt" prefWidth="100.0" text="Emprunt en cours" />
+                  <TableColumn fx:id="inscription" prefWidth="100.0" text="Date d'inscription" />
+                  <TableColumn fx:id="action" prefWidth="120.0" text="Action" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
