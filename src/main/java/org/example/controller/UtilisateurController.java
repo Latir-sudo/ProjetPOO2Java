@@ -3,10 +3,7 @@ package org.example.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 import org.example.model.Utilisateur;
@@ -16,6 +13,9 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static sun.util.locale.LocaleUtils.isEmpty;
 
 public class UtilisateurController {
 
@@ -36,6 +36,9 @@ public class UtilisateurController {
     @FXML
     private TableColumn<Utilisateur, Void> action;
 
+    @FXML
+    private TextField searchField;
+
     private final UtlisateurService utilisateurService = new UtlisateurService();
 
     @FXML
@@ -52,6 +55,9 @@ public class UtilisateurController {
 
         // Charger les utilisateurs depuis le service
         refreshTable();
+        // ma fonction pour la recherche d'utilisateur
+
+        setupSearch();
     }
 
     private void refreshTable() {
@@ -104,5 +110,30 @@ public class UtilisateurController {
         };
 
         action.setCellFactory(cellFactory);
+    }
+
+    private void setupSearch(){
+        // pour ecouter les changements dans le champ de recherche
+
+        searchField.textProperty().addListener((observable,oldvalue,newvalue) -> {
+            filterTable(newvalue);
+        });
+    }
+
+    private void filterTable(String searchText) {
+        if (searchText ==null || searchText.isEmpty()){
+             tableau.setItems(FXCollections.observableArrayList(utilisateurService.getAllUsers()));
+             return ;
+        }
+
+        String lowerCaseFilter = searchText.toLowerCase();
+        List<Utilisateur> filteredList = utilisateurService.getAllUsers().stream().filter(
+                user ->
+                        user.getNom().toLowerCase().contains(lowerCaseFilter) ||
+                        user.getPrenom().toLowerCase().contains(lowerCaseFilter) ||
+                        user.getMatricule().toLowerCase().contains(lowerCaseFilter)
+            ).collect(Collectors.toList());
+
+        tableau.setItems(FXCollections.observableArrayList(filteredList));
     }
 }

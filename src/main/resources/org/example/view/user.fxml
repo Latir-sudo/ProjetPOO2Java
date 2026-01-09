@@ -41,7 +41,7 @@
                             <Font size="16.0"/>
                         </font>
                     </Label>
-                    <TextField promptText="Rechercher par nom ou matricule" styleClass="white-bg"/>
+                    <TextField promptText="Rechercher par nom ou matricule" styleClass="white-bg" fx:id="searchField"/>
                     <HBox.hgrow>
                         <Priority fx:constant="ALWAYS"/>
                     </HBox.hgrow>
