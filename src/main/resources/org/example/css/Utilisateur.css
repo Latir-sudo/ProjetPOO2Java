@@ -117,4 +117,19 @@
      -fx-background-color: #B55C2D;
      -fx-text-fill: #fff;
 
+     }
+
+ .btn-edit {
+     -fx-background-color: #28475C;
+     -fx-background-radius: 18;
+ }
+
+ .btn-delete {
+     -fx-background-color: #B55C2D;
+     -fx-background-radius: 18;
+ }
+
+#titre {
+     -fx-text-fill:#28475C;
+    -fx-font-weight: bold;
  }
