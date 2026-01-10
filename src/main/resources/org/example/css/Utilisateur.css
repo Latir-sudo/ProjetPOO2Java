@@ -133,3 +133,184 @@
      -fx-text-fill:#28475C;
     -fx-font-weight: bold;
  }
+
+
+/* stylisation partie authenitification
+*/
+/* Reset et styles de base */
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-background-color: #f8f9fa;
+}
+
+/* Centrage absolu de tout le contenu */
+BorderPane {
+    -fx-alignment: center;
+}
+
+StackPane {
+    -fx-alignment: center;
+}
+
+/* Partie gauche - TOUJOURS centrée */
+.login-left-panel {
+    -fx-background-color: #C55E2B;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 3);
+    -fx-alignment: center;
+    -fx-min-height: 600;
+}
+
+.login-left-panel > VBox {
+    -fx-alignment: center;
+    -fx-spacing: 30;
+}
+
+.app-title {
+    -fx-text-fill: white;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0.5, 0, 1);
+    -fx-alignment: center;
+}
+
+.app-subtitle {
+    -fx-text-fill: rgba(255, 255, 255, 0.9);
+    -fx-font-size: 16px;
+    -fx-font-style: italic;
+    -fx-alignment: center;
+}
+
+/* Partie droite - TOUJOURS centrée */
+.login-right-panel {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 20, 0, 0, 0);
+    -fx-alignment: center;
+    -fx-min-height: 600;
+}
+
+.login-right-panel > VBox {
+    -fx-alignment: center;
+    -fx-spacing: 40;
+}
+
+/* Titre centré */
+.login-title {
+    -fx-text-fill: #B55C2D;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(181, 92, 45, 0.15), 5, 0.5, 0, 1);
+    -fx-alignment: center;
+}
+
+/* Formulaire avec centrage */
+.login-right-panel > VBox > VBox {
+    -fx-alignment: center;
+    -fx-spacing: 25;
+    -fx-pref-width: 320;
+    -fx-max-width: 400;
+}
+
+/* Champs de formulaire alignés à gauche mais dans un container centré */
+.form-label {
+    -fx-text-fill: #5D4037;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.form-input {
+    -fx-pref-height: 42px;
+    -fx-pref-width: 300px;
+    -fx-max-width: 350px;
+    -fx-min-width: 250px;
+    -fx-padding: 10 15;
+    -fx-background-radius: 8;
+    -fx-border-color: #E0E0E0;
+    -fx-border-radius: 8;
+    -fx-border-width: 1.5;
+    -fx-font-size: 14px;
+}
+
+.form-input:focused {
+    -fx-border-color: #B55C2D;
+    -fx-border-width: 2;
+}
+
+/* Boutons centrés */
+.btn-login {
+    -fx-background-color: #B55C2D;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 12 35;
+    -fx-min-width: 140px;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+}
+
+.btn-login:hover {
+    -fx-background-color: #9A4D26;
+}
+
+.btn-cancel {
+    -fx-background-color: transparent;
+    -fx-text-fill: #B55C2D;
+    -fx-border-color: #B55C2D;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+    -fx-padding: 10 30;
+    -fx-min-width: 120px;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+}
+
+.btn-cancel:hover {
+    -fx-background-color: rgba(181, 92, 45, 0.1);
+}
+
+/* Container des boutons */
+HBox {
+    -fx-alignment: center;
+    -fx-spacing: 20;
+}
+
+/* Message d'erreur centré */
+.error-message {
+    -fx-text-fill: #D32F2F;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-background-color: rgba(211, 47, 47, 0.1);
+    -fx-background-radius: 6;
+    -fx-padding: 12;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-max-width: 300px;
+}
+
+/* Pied de page centré */
+.footer {
+    -fx-text-fill: #757575;
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+    -fx-alignment: center;
+}
+
+/* Responsive : quand l'écran est petit */
+@media (max-width: 800px) {
+    .login-left-panel, .login-right-panel {
+        -fx-min-height: 500;
+    }
+
+    .app-title {
+        -fx-font-size: 24px;
+    }
+
+    .login-title {
+        -fx-font-size: 28px;
+    }
+
+    .form-input {
+        -fx-pref-width: 250px;
+    }
+}
