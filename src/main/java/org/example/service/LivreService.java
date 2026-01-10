@@ -1,6 +1,9 @@
 package org.example.service;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> f3fd123f6ae0c72c1816b8ae390ec4ea80478b29
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.example.model.Livre;
+<<<<<<< HEAD
 import org.example.util.ConnexionBD;
+=======
+import FX1.utilitaire.ConnexionBD;
+>>>>>>> f3fd123f6ae0c72c1816b8ae390ec4ea80478b29
 
 public class LivreService {
 

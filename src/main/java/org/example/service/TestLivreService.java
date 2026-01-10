@@ -1,5 +1,9 @@
 package org.example.service;
 
+<<<<<<< HEAD
+=======
+package org.example.service;
+>>>>>>> f3fd123f6ae0c72c1816b8ae390ec4ea80478b29
 
 import org.example.model.Livre;
 

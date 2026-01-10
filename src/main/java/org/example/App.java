@@ -14,7 +14,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/view/user.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/view/sample.fxml")));
         stage.setScene(new Scene(root));
         stage.setTitle("Interface Gestion des utilisateurs");
         stage.show();
