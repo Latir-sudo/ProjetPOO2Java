@@ -30,7 +30,7 @@ public class App extends Application {
 
     public static void loadMainInterface() throws Exception {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("/org/example/view/user.fxml"));
-        Scene scene = new Scene(loader.load(),1200,800);
+        Scene scene = new Scene(loader.load(),1000,800);
         scene.getStylesheets().add(App.class.getResource("/org/example/css/Utilisateur.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setTitle("Gestion des Utilisateurs");
