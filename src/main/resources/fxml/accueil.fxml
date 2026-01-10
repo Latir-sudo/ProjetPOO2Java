@@ -27,7 +27,7 @@
             <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 20;">
             <ImageView fitHeight="65.0" fitWidth="59.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../img/ugb.jpg" />
+                  <Image url="@../image/logo.jpg" />
                </image>
             </ImageView>
                 <VBox>
@@ -84,7 +84,7 @@
                     <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: ffffffff;">
                   <ImageView fitHeight="49.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" style="visibility: n;">
                      <image>
-                        <Image url="@../../../../../../img/edit.png" />
+                        <Image url="@../image/img/fas%20fa-user-graduate.png" />
                      </image>
                   </ImageView>
                         <VBox>
