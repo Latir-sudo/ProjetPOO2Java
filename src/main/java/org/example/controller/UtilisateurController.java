@@ -71,7 +71,7 @@ public class UtilisateurController {
                 // Bouton Modifier
                 
                 
-              
+
                 btnModifier.getStyleClass().add("btn-edit");
                 btnModifier.setOnAction(e -> {
                     Utilisateur user = getTableView().getItems().get(getIndex());
