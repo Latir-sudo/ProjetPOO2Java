@@ -1,4 +1,6 @@
-package FX1.service;
+package org.example.service;
+
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import FX1.model.Livre;
-import FX1.utilitaire.ConnexionBD;
+import org.example.model.Livre;
+import org.example.util.ConnexionBD;
 
 public class LivreService {
 

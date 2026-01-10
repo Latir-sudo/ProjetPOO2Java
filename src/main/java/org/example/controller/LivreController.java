@@ -1,11 +1,13 @@
-package FX1.controller;
+package org.example.controller;
+
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import FX1.model.Livre;
-import FX1.service.LivreService;
+import org.example.model.Livre;
+import org.example.service.LivreService;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

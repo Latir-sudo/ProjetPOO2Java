@@ -1,7 +1,8 @@
-package FX1.controller;
+package org.example.controller;
 
-import FX1.model.Livre;
-import FX1.service.LivreService;
+import org.example.model.Livre;
+import org.example.service.LivreService;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

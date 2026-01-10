@@ -1,4 +1,5 @@
-package FX1.model;
+package org.example.model;
+
 
 public class Livre {
     private int id;
