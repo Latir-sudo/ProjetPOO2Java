@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.example.model.Livre;
 import org.example.util.ConnexionBD;
 public class LivreService {
@@ -23,7 +24,7 @@ public class LivreService {
         ) {
             while (rs.next()) {
                 Livre livre = new Livre(
-                    rs.getInt("id"),
+                    rs.getInt("id_livre"),
                     rs.getString("titre"),
                     rs.getString("auteur"),
                     rs.getString("isbn"),
@@ -71,7 +72,7 @@ public class LivreService {
     // Supprimer un livre
     public boolean deleteLivre(int id) {
         int rows = 0;
-        String sql = "DELETE FROM livres WHERE id = ?";
+        String sql = "DELETE FROM livres WHERE id_livre = ?";
         
         try (
             Connection con = ConnexionBD.getConnexion();
@@ -101,7 +102,7 @@ public class LivreService {
 
             while (rs.next()) {
                 Livre livre = new Livre(
-                    rs.getInt("id"),
+                    rs.getInt("id_livre"),
                     rs.getString("titre"),
                     rs.getString("auteur"),
                     rs.getString("isbn"),
@@ -133,7 +134,7 @@ public class LivreService {
             
             while (rs.next()) {
                 Livre livre = new Livre(
-                    rs.getInt("id"),
+                    rs.getInt("id_livre"),
                     rs.getString("titre"),
                     rs.getString("auteur"),
                     rs.getString("isbn"),
@@ -201,7 +202,7 @@ public class LivreService {
             
             while (rs.next()) {
                 Livre livre = new Livre(
-                    rs.getInt("id"),
+                    rs.getInt("id_livre"),
                     rs.getString("titre"),
                     rs.getString("auteur"),
                     rs.getString("isbn"),
@@ -222,7 +223,7 @@ public class LivreService {
     // Mettre à jour un livre
     public boolean updateLivre(Livre livre) {
         int row = 0;
-        String sql = "UPDATE livres SET titre = ?, auteur = ?, isbn = ?, quantite_totale = ?, disponibles = ?, statut = ? WHERE id = ?";
+        String sql = "UPDATE livres SET titre = ?, auteur = ?, isbn = ?, quantite_totale = ?, disponibles = ?, statut = ? WHERE id_livre = ?";
         
         try (
             Connection con = ConnexionBD.getConnexion();
@@ -247,7 +248,7 @@ public class LivreService {
 
     // Récupérer un livre par son ID
     public Livre getLivreById(int id) {
-        String sql = "SELECT * FROM livres WHERE id = ?";
+        String sql = "SELECT * FROM livres WHERE id_livre = ?";
         Livre livre = null;
         
         try (
@@ -259,7 +260,7 @@ public class LivreService {
             
             if (rs.next()) {
                 livre = new Livre(
-                    rs.getInt("id"),
+                    rs.getInt("id_livre"),
                     rs.getString("titre"),
                     rs.getString("auteur"),
                     rs.getString("isbn"),
@@ -318,7 +319,7 @@ public class LivreService {
 
     // Mettre à jour la quantité disponible après emprunt/retour
     public boolean updateDisponibles(int id, int nouveauxDisponibles) {
-        String sql = "UPDATE livres SET disponibles = ? WHERE id = ?";
+        String sql = "UPDATE livres SET disponibles = ? WHERE id_livre = ?";
         
         try (
             Connection con = ConnexionBD.getConnexion();
