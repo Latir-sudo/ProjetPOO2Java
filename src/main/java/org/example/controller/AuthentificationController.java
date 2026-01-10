@@ -7,6 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.App;
+import org.example.service.AuthentificationService;
 
 public class AuthentificationController {
 
@@ -19,6 +20,8 @@ public class AuthentificationController {
     @FXML
     private Button cancelButton;
     @FXML private Label errorLabel;
+
+    private final AuthentificationService authentificationService = new AuthentificationService();
 
     @FXML
     public void initialize(){
@@ -56,10 +59,10 @@ public class AuthentificationController {
         errorLabel.setVisible(false);
         loginButton.setDisable(true); // je desactive le bouton pendant la vérification des informations
 
-        if (authenticate(username, password)) {
+        if (authentificationService.auth(username, password)) {
 
             try{
-                App.loadUtilisateur();
+                App.loadMainInterface();
             }catch(Exception e){
                 showErreur("Erreur:"+ e.getMessage());
                 loginButton.setDisable(false);
