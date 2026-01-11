@@ -1,7 +1,7 @@
 
-package FX1.service;
+package org.example.service;
 
-import FX1.model.Livre;
+import org.example.model.Livre;
 
 
 public class TestLivreService {
