@@ -1,31 +1,42 @@
 package org.example.model;
 
 public class Utilisateur {
-    private int id;
+    private int idUtilisateur;
     private String nom;
     private String prenom;
     private String matricule;
-    private String typeUtilisateur;
+    private String typeUtilisateur; // "ENSEIGNANT", "ETUDIANT", etc.
 
+    // Constructeurs
+    public Utilisateur() {}
 
-    public Utilisateur(int id, String nom, String prenom, String matricule, String typeUtilisateur) {
-        this.id = id;
+    public Utilisateur(int idUtilisateur, String nom, String prenom,
+                       String matricule, String typeUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
         this.nom = nom;
         this.prenom = prenom;
         this.matricule = matricule;
         this.typeUtilisateur = typeUtilisateur;
     }
 
-    // définition des getteurs et setteurs
+    // Getters et Setters
+    public int getIdUtilisateur() { return idUtilisateur; }
+    public void setIdUtilisateur(int idUtilisateur) { this.idUtilisateur = idUtilisateur; }
 
-    public int getId() {return id;}
-    public void setId(int id) {  this.id = id;}
-    public String getNom() { return nom;}
-    public void setNom(String nom) { this.nom = nom;}
-    public String getPrenom() { return prenom;}
-    public void setPrenom(String prenom) { this.prenom = prenom;}
-    public String getMatricule() {   return matricule;}
-    public void setMatricule(String matricule) { this.matricule = matricule;}
-    public String getTypeUtilisateur() {return typeUtilisateur;}
-    public void setTypeUtilisateur(String typeUtilisateur){this.typeUtilisateur=typeUtilisateur;}
+    public String getNom() { return nom; }
+    public void setNom(String nom) { this.nom = nom; }
+
+    public String getPrenom() { return prenom; }
+    public void setPrenom(String prenom) { this.prenom = prenom; }
+
+    public String getMatricule() { return matricule; }
+    public void setMatricule(String matricule) { this.matricule = matricule; }
+
+    public String getTypeUtilisateur() { return typeUtilisateur; }
+    public void setTypeUtilisateur(String typeUtilisateur) { this.typeUtilisateur = typeUtilisateur; }
+
+    @Override
+    public String toString() {
+        return nom + " " + prenom + " (" + matricule + ")";
+    }
 }

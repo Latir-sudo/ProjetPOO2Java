@@ -1,9 +1,6 @@
+package org.example.service;
 
-package FX1.service;
-
-import FX1.model.Livre;
-
-
+import org.example.model.Livre;
 public class TestLivreService {
     public static void main(String[] args) {
         LivreService service = new LivreService();
@@ -12,7 +9,7 @@ public class TestLivreService {
         
         //1 Teste de l'ajout
         System.out.println("\n1. Test ajout livre:");
-        Livre livre = new Livre("Test Java", "Auteur Test", "978-1234567890", 10, 8, "Disponible");
+        Livre livre = new Livre("Test Java", "Auteur Test", "978-1234567890", 10, 8);
         boolean ajoutReussi = service.addLivre(livre);
         System.out.println("Ajout réussi: " + ajoutReussi);
         

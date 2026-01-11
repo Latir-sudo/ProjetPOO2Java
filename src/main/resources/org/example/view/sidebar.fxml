@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      prefWidth="220"
+      spacing="0"
+      fx:controller="org.example.controller.SidebarController"
+      style="-fx-background-color:#B35C2E;"
+      VBox.vgrow="ALWAYS">
+
+    <padding>
+        <Insets top="40" right="15" bottom="20" left="15"/>
+    </padding>
+
+    <!-- En-tête -->
+    <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 20;">
+        <ImageView fitHeight="65" fitWidth="59" preserveRatio="true">
+            <image>
+                <Image url="@../image/logo.jpg"/>
+            </image>
+        </ImageView>
+
+        <VBox>
+            <Label text="Biblio Univ"
+                   style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Label text="Gestion Bibliothèque"
+                   style="-fx-text-fill: rgba(255,255,255,0.8); -fx-font-size: 10px;"/>
+        </VBox>
+    </HBox>
+
+    <Separator style="-fx-background-color: rgba(255,255,255,0.2);"/>
+
+    <!-- Menu -->
+    <VBox spacing="5" VBox.vgrow="ALWAYS">
+
+        <Button text="🏠  Tableau de bord" maxWidth="Infinity" fx:id="btnDashboard"
+                style="-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-padding: 12 15;"/>
+
+        <Button text="👥  Utilisateurs" maxWidth="Infinity" fx:id="btnGestionUsers"
+                style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-padding: 12 15;"/>
+
+        <Button text="📚  Livres" maxWidth="Infinity" fx:id="btnGestionLivres"
+                style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-padding: 12 15;"/>
+
+        <Button text="📤  Emprunts" maxWidth="Infinity" fx:id="btnGestionEmprunts"
+                style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-padding: 12 15;"/>
+
+        <Button text="📊  Statistiques" maxWidth="Infinity" fx:id="btnStatistiques"
+                style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-padding: 12 15;"/>
+
+        <Button text="⚙️  Règles Métier" maxWidth="Infinity"
+                style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-padding: 12 15;"/>
+
+    </VBox>
+
+    <!-- Footer -->
+    <VBox spacing="10" style="-fx-padding: 20 0 0 0;">
+        <Separator style="-fx-background-color: rgba(255,255,255,0.2);"/>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Circle radius="18" style="-fx-fill: #333333;"/>
+            <VBox>
+                <Label text="Administrateur"
+                       style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;"/>
+                <Label text="Connecté"
+                       style="-fx-text-fill: rgba(255,255,255,0.7); -fx-font-size: 10px;"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+</VBox>

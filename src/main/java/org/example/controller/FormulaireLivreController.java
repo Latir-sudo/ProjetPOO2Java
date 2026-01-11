@@ -1,11 +1,11 @@
-package FX1.controller;
+package org.example.controller;
 
-import FX1.model.Livre;
-import FX1.service.LivreService;
+import org.example.model.Livre;
+import org.example.service.LivreService;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -16,7 +16,7 @@ public class FormulaireLivreController {
     @FXML private TextField isbnField;
     @FXML private TextField quantiteField;
     @FXML private TextField disponiblesField;
-    @FXML private ComboBox<String> statutCombo;
+
     
     private Livre livre;
     private LivreService livreService = new LivreService();
@@ -26,10 +26,7 @@ public class FormulaireLivreController {
     public void initialize() {
 
   
-        statutCombo.getItems().addAll("Disponible", "Indisponible", "Réservé", "En réparation");
-        statutCombo.setValue("Disponible");
-        
-        
+
         quantiteField.setText("1");
         disponiblesField.setText("1");
     }
@@ -42,7 +39,7 @@ public class FormulaireLivreController {
             isbnField.setText(livre.getIsbn());
             quantiteField.setText(String.valueOf(livre.getQuantiteTotale()));
             disponiblesField.setText(String.valueOf(livre.getDisponibles()));
-            statutCombo.setValue(livre.getStatut());
+
         }
     }
     
@@ -69,7 +66,7 @@ public class FormulaireLivreController {
             String isbn = isbnField.getText().trim();
             int quantite = Integer.parseInt(quantiteField.getText().trim());
             int disponibles = Integer.parseInt(disponiblesField.getText().trim());
-            String statut = statutCombo.getValue();
+
             
             
             if (quantite < 0) {
@@ -88,7 +85,7 @@ public class FormulaireLivreController {
             
             if (livre == null) {
                
-                Livre nouveauLivre = new Livre(titre, auteur, isbn, quantite, disponibles, statut);
+                Livre nouveauLivre = new Livre(titre, auteur, isbn, quantite, disponibles);
                 success = livreService.addLivre(nouveauLivre);
             } else {
              
@@ -97,7 +94,7 @@ public class FormulaireLivreController {
                 livre.setIsbn(isbn);
                 livre.setQuantiteTotale(quantite);
                 livre.setDisponibles(disponibles);
-                livre.setStatut(statut);
+
                 success = livreService.updateLivre(livre);
             }
             

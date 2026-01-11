@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.util.DbConnection;
+import org.example.util.ConnexionBD;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ public class AuthentificationService {
         String sql = "select password  from administrateur where email=?";
 
         try(
-                Connection con = DbConnection.getConnection();
+                Connection con = ConnexionBD.getConnexion();
                 PreparedStatement stmt = con.prepareStatement(sql);
 
                 ) {

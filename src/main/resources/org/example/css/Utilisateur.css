@@ -131,7 +131,7 @@
  }
 
  .btn-delete {
-     -fx-background-color: #B55C2D;
+     -fx-background-color: #B8652A;
      -fx-background-radius: 18;
  }
 
@@ -140,6 +140,18 @@
     -fx-font-weight: bold;
  }
 
+
+/* Styles pour les en-têtes de tableau */
+.table-view .column-header {
+    -fx-background-color: #B8652A;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #B8652A;
+}
 
 /* stylisation partie authenitification
 */

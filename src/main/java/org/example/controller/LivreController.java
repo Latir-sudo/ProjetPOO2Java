@@ -1,11 +1,13 @@
-package FX1.controller;
+package org.example.controller;
+
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import FX1.model.Livre;
-import FX1.service.LivreService;
+import org.example.model.Livre;
+import org.example.service.LivreService;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -58,7 +60,7 @@ public class LivreController implements Initializable {
         isbnColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         quantiteColumn.setCellValueFactory(new PropertyValueFactory<>("quantiteTotale"));
         disponiblesColumn.setCellValueFactory(new PropertyValueFactory<>("disponibles"));
-        statutColumn.setCellValueFactory(new PropertyValueFactory<>("statut"));
+
         livresTable.setItems(livresData);
     }
 
@@ -86,7 +88,7 @@ public class LivreController implements Initializable {
 
     private void ouvrirFormulaire(Livre livre) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FX1/view/formulaireLivre.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/view/formulaireLivre.fxml"));
             Parent root = loader.load();
 
             FormulaireLivreController controller = loader.getController();
@@ -135,13 +137,13 @@ public class LivreController implements Initializable {
 
             {
                 ImageView editIcon = new ImageView(
-                        new Image(getClass().getResourceAsStream("/FX1/images/edit.png")));
+                        new Image(getClass().getResourceAsStream("/org/example/images/edit.png")));
                 editIcon.setFitWidth(42);
                 editIcon.setFitHeight(42);
                 editIcon.setPreserveRatio(true);
 
                 ImageView deleteIcon = new ImageView(
-                        new Image(getClass().getResourceAsStream("/FX1/images/delete.png")));
+                        new Image(getClass().getResourceAsStream("/org/example/images/delete.png")));
                 deleteIcon.setFitWidth(42);
                 deleteIcon.setFitHeight(42);
                 deleteIcon.setPreserveRatio(true);

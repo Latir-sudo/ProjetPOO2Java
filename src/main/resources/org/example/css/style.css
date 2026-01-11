@@ -63,6 +63,11 @@ HBox {
     -fx-padding: 5 0 0 0;
 }
 
+.content {
+    -fx-padding: 15;
+}
+
+
 /* Tableau */
 .table-livres {
     -fx-background-color: white;
