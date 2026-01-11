@@ -1,0 +1,182 @@
+/* Style général */
+.root {
+    -fx-background-color: #f5f7fa;
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Conteneurs des graphiques */
+.chart-container {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+}
+
+.chart-box {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #dfe6e9;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+}
+
+/* Titres des graphiques */
+.chart-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d3436;
+    -fx-padding: 0 0 5 0;
+}
+
+/* Styles des graphiques */
+.chart {
+    -fx-background-color: transparent;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-content {
+    -fx-padding: 10;
+}
+
+/* BarChart styles */
+.axis {
+    -fx-tick-label-fill: #636e72;
+    -fx-font-size: 12px;
+}
+
+.axis-label {
+    -fx-text-fill: #2d3436;
+    -fx-font-weight: bold;
+}
+
+.chart-bar {
+    -fx-bar-fill: linear-gradient(to bottom, #0984e3, #74b9ff);
+    -fx-background-insets: 0;
+    -fx-border-width: 0;
+}
+
+.chart-bar:hover {
+    -fx-bar-fill: linear-gradient(to bottom, #00b894, #55efc4);
+    -fx-cursor: hand;
+}
+
+/* PieChart styles */
+.chart-pie {
+    -fx-background-insets: 0;
+    -fx-border-width: 0;
+}
+
+.chart-pie-label {
+    -fx-fill: #2d3436;
+    -fx-font-weight: bold;
+}
+
+/* Couleurs pour PieChart segments */
+.default-color0.chart-pie { -fx-pie-color: #6c5ce7; }
+.default-color1.chart-pie { -fx-pie-color: #00b894; }
+.default-color2.chart-pie { -fx-pie-color: #fd79a8; }
+.default-color3.chart-pie { -fx-pie-color: #fdcb6e; }
+.default-color4.chart-pie { -fx-pie-color: #e17055; }
+.default-color5.chart-pie { -fx-pie-color: #0984e3; }
+.default-color6.chart-pie { -fx-pie-color: #00cec9; }
+
+/* Légende */
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+.chart-legend-item {
+    -fx-text-fill: #2d3436;
+}
+
+/* Section d'informations */
+.info-container {
+    -fx-background-color: #dfe6e9;
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+    -fx-border-radius: 10;
+    -fx-border-color: #b2bec3;
+    -fx-border-width: 1;
+}
+
+.info-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d3436;
+}
+
+.info-text {
+    -fx-font-size: 13px;
+    -fx-text-fill: #636e72;
+    -fx-padding: 2 0;
+}
+
+/* Boutons */
+.btn-primary {
+    -fx-background-color: linear-gradient(to bottom, #0984e3, #74b9ff);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: linear-gradient(to bottom, #0770c4, #5ca8ff);
+    -fx-effect: dropshadow(three-pass-box, rgba(9, 132, 227, 0.3), 10, 0, 0, 3);
+}
+
+.btn-primary:pressed {
+    -fx-background-color: linear-gradient(to bottom, #065a9e, #4a91e8);
+}
+
+.btn-secondary {
+    -fx-background-color: linear-gradient(to bottom, #00b894, #55efc4);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: linear-gradient(to bottom, #00a085, #44d7b6);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 184, 148, 0.3), 10, 0, 0, 3);
+}
+
+.btn-secondary:pressed {
+    -fx-background-color: linear-gradient(to bottom, #008672, #33c5a8);
+}
+
+/* Tooltip */
+.chart-tooltip-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d3436;
+}
+
+/* Animation pour les graphiques */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.chart-series-line {
+    -fx-stroke-width: 2;
+}
+
+.data0.chart-line-symbol { -fx-background-color: #28475C, white; }
+.data1.chart-line-symbol { -fx-background-color: #00b894, white; }
+.data2.chart-line-symbol { -fx-background-color: #fd79a8, white; }
