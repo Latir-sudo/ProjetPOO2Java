@@ -10,9 +10,8 @@
             fx:controller="org.example.controller.UtilisateurController"
             stylesheets="@../css/Utilisateur.css">
 
-    <content>
+    <content >
         <VBox fillWidth="true" spacing="30.0">
-
             <!-- Entête principal -->
             <HBox spacing="20.0" styleClass="shadow white-bg">
                 <HBox spacing="20.0">
@@ -67,12 +66,12 @@
                 }
             </style>
                 <columns>
-                    <TableColumn fx:id="id" text="ID" prefWidth="30" styleClass="tableview"/>
-                    <TableColumn fx:id="nom" text="Nom" prefWidth="100" styleClass="tableview"/>
-                    <TableColumn fx:id="prenom" text="Prenom" prefWidth="110" styleClass="tableview"/>
-                    <TableColumn fx:id="matricule" text="Matricule" prefWidth="75" styleClass="tableview"/>
-                    <TableColumn fx:id="typeUtilisateur" text="Type" prefWidth="100" styleClass="tableview"/>
-                    <TableColumn fx:id="action" text="Action" prefWidth="120"/>
+                    <TableColumn fx:id="id" text="ID" prefWidth="200" styleClass="tableview"/>
+                    <TableColumn fx:id="nom" text="Nom" prefWidth="200" styleClass="tableview"/>
+                    <TableColumn fx:id="prenom" text="Prenom" prefWidth="200" styleClass="tableview"/>
+                    <TableColumn fx:id="matricule" text="Matricule" prefWidth="200" styleClass="tableview"/>
+                    <TableColumn fx:id="typeUtilisateur" text="Type" prefWidth="200" styleClass="tableview"/>
+                    <TableColumn fx:id="action" text="Action" prefWidth="200"/>
                 </columns>
             </TableView>
         </VBox>

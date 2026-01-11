@@ -69,13 +69,13 @@
                        VBox.vgrow="ALWAYS">
 
                 <columns>
-                    <TableColumn fx:id="idColumn" text="ID" prefWidth="60"/>
-                    <TableColumn fx:id="titreColumn" text="Titre" prefWidth="180"/>
+                    <TableColumn fx:id="idColumn" text="ID" prefWidth="140"/>
+                    <TableColumn fx:id="titreColumn" text="Titre" prefWidth="140"/>
                     <TableColumn fx:id="auteurColumn" text="Auteur" prefWidth="140"/>
-                    <TableColumn fx:id="isbnColumn" text="ISBN" prefWidth="130"/>
-                    <TableColumn fx:id="quantiteColumn" text="Quantité" prefWidth="90"/>
-                    <TableColumn fx:id="disponiblesColumn" text="Disponibles" prefWidth="90"/>
-                    <TableColumn fx:id="actionColumn" text="Actions" prefWidth="120"/>
+                    <TableColumn fx:id="isbnColumn" text="ISBN" prefWidth="140"/>
+                    <TableColumn fx:id="quantiteColumn" text="Quantité" prefWidth="140"/>
+                    <TableColumn fx:id="disponiblesColumn" text="Disponibles" prefWidth="140"/>
+                    <TableColumn fx:id="actionColumn" text="Actions" prefWidth="140"/>
                 </columns>
 
             </TableView>

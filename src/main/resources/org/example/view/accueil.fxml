@@ -11,9 +11,9 @@
       style="-fx-background-color: #f5f5f5;"
       VBox.vgrow="ALWAYS">
 
-    <!-- ⚠️ Padding corrigé : PAS de marge à gauche -->
+    <!--padding pour espacer le sidebar et le contenu -->
     <padding>
-        <Insets top="20" right="20" bottom="20" left="0"/>
+        <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
     <!-- En-tête -->
@@ -140,11 +140,11 @@
 
         <TableView fx:id="tableEmprunts" prefHeight="230">
             <columns>
-                <TableColumn fx:id="colUtilisateur" text="Utilisateur" prefWidth="200" style="-fx-text-fill:white"/>
-                <TableColumn fx:id="colLivre" text="Livre" prefWidth="200" style="-fx-text-fill:white"/>
-                <TableColumn fx:id="colDateEmprunt" text="Date emprunt" prefWidth="200" style="-fx-text-fill:white"/>
-                <TableColumn fx:id="colRetourPrevu" text="Retour prévu" prefWidth="200" style="-fx-text-fill:white"/>
-                <TableColumn fx:id="colStatut" text="Statut" prefWidth="200" style="-fx-text-fill:white"/>
+                <TableColumn fx:id="colUtilisateur" text="Utilisateur" prefWidth="200" style="-fx-text-fill:white;"/>
+                <TableColumn fx:id="colLivre" text="Livre" prefWidth="200" style="-fx-text-fill:white;"/>
+                <TableColumn fx:id="colDateEmprunt" text="Date emprunt" prefWidth="200" style="-fx-text-fill:white;"/>
+                <TableColumn fx:id="colRetourPrevu" text="Retour prévu" prefWidth="200" style="-fx-text-fill:white;"/>
+                <TableColumn fx:id="colStatut" text="Statut" prefWidth="200" style="-fx-text-fill:white;"/>
             </columns>
             <placeholder>
                 <Label text="Aucun emprunt récent"/>
