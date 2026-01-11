@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 
 public class ConnexionBD {
-    private static final String URL = "jdbc:mysql://localhost:3306/livreBiblio?useSSL=false&serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://localhost:3306/bibliotheque?useSSL=false&serverTimezone=UTC";
     private static final String USER = "root";
-    private static final String PASSWORD = "fatou";
+    private static final String PASSWORD = "francois12";
 
     public static Connection getConnexion() {
         try{

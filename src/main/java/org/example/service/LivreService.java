@@ -28,9 +28,9 @@ public class LivreService {
                     rs.getString("titre"),
                     rs.getString("auteur"),
                     rs.getString("isbn"),
-                    rs.getInt("quantite_totale"),
-                    rs.getInt("disponibles"),
-                    rs.getString("statut")
+                    rs.getInt("quantite_total"),
+                    rs.getInt("quantite_disponible")
+
                 );
                 livres.add(livre);
             }
@@ -45,7 +45,7 @@ public class LivreService {
     // Ajouter un livre
     public boolean addLivre(Livre livre) {
         if (!livre.getTitre().isEmpty() && !livre.getAuteur().isEmpty()) {
-            String sql = "INSERT INTO livres (titre, auteur, isbn, quantite_totale, disponibles, statut) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO livres (titre, auteur, isbn, quantite_total, quantite_disponible) VALUES (?, ?, ?, ?, ?)";
             
             try (
                 Connection con = ConnexionBD.getConnexion();
@@ -56,7 +56,7 @@ public class LivreService {
                 ps.setString(3, livre.getIsbn());
                 ps.setInt(4, livre.getQuantiteTotale());
                 ps.setInt(5, livre.getDisponibles());
-                ps.setString(6, livre.getStatut());
+
 
                 int rows = ps.executeUpdate();
                 return rows > 0;
@@ -106,9 +106,9 @@ public class LivreService {
                     rs.getString("titre"),
                     rs.getString("auteur"),
                     rs.getString("isbn"),
-                    rs.getInt("quantite_totale"),
-                    rs.getInt("disponibles"),
-                    rs.getString("statut")
+                    rs.getInt("quantite_total"),
+                    rs.getInt("quantite_disponible")
+
                 );
                 livres.add(livre);
             }
@@ -138,9 +138,9 @@ public class LivreService {
                     rs.getString("titre"),
                     rs.getString("auteur"),
                     rs.getString("isbn"),
-                    rs.getInt("quantite_totale"),
-                    rs.getInt("disponibles"),
-                    rs.getString("statut")
+                    rs.getInt("quantite_total"),
+                    rs.getInt("quantite_disponible")
+
                 );
                 livres.add(livre);
             }
@@ -166,13 +166,13 @@ public class LivreService {
             
             while (rs.next()) {
                 Livre livre = new Livre(
-                    rs.getInt("id"),
+                    rs.getInt("id_livre"),
                     rs.getString("titre"),
                     rs.getString("auteur"),
                     rs.getString("isbn"),
-                    rs.getInt("quantite_totale"),
-                    rs.getInt("disponibles"),
-                    rs.getString("statut")
+                    rs.getInt("quantite_total"),
+                    rs.getInt("quantite_disponible")
+
                 );
                 livres.add(livre);
             }
@@ -206,9 +206,9 @@ public class LivreService {
                     rs.getString("titre"),
                     rs.getString("auteur"),
                     rs.getString("isbn"),
-                    rs.getInt("quantite_totale"),
-                    rs.getInt("disponibles"),
-                    rs.getString("statut")
+                    rs.getInt("quantite_total"),
+                    rs.getInt("quantite_disponible")
+
                 );
                 livres.add(livre);
             }
@@ -223,7 +223,7 @@ public class LivreService {
     // Mettre à jour un livre
     public boolean updateLivre(Livre livre) {
         int row = 0;
-        String sql = "UPDATE livres SET titre = ?, auteur = ?, isbn = ?, quantite_totale = ?, disponibles = ?, statut = ? WHERE id_livre = ?";
+        String sql = "UPDATE livres SET titre = ?, auteur = ?, isbn = ?, quantite_total = ?, quantite_disponible = ? WHERE id_livre = ?";
         
         try (
             Connection con = ConnexionBD.getConnexion();
@@ -234,8 +234,7 @@ public class LivreService {
             ps.setString(3, livre.getIsbn());
             ps.setInt(4, livre.getQuantiteTotale());
             ps.setInt(5, livre.getDisponibles());
-            ps.setString(6, livre.getStatut());
-            ps.setInt(7, livre.getId());
+            ps.setInt(6, livre.getId());
             
             row = ps.executeUpdate();
 
@@ -264,9 +263,9 @@ public class LivreService {
                     rs.getString("titre"),
                     rs.getString("auteur"),
                     rs.getString("isbn"),
-                    rs.getInt("quantite_totale"),
-                    rs.getInt("disponibles"),
-                    rs.getString("statut")
+                    rs.getInt("quantite_total"),
+                    rs.getInt("quantite_disponible")
+
                 );
             }
 
@@ -299,7 +298,7 @@ public class LivreService {
 
     // Compter le nombre de livres disponibles
     public int getLivresDisponibles() {
-        String sql = "SELECT SUM(disponibles) as total_disponibles FROM livres";
+        String sql = "SELECT SUM(quantite_disponible) as total_disponibles FROM livres";
         int total = 0;
         
         try (
@@ -319,7 +318,7 @@ public class LivreService {
 
     // Mettre à jour la quantité disponible après emprunt/retour
     public boolean updateDisponibles(int id, int nouveauxDisponibles) {
-        String sql = "UPDATE livres SET disponibles = ? WHERE id_livre = ?";
+        String sql = "UPDATE livres SET quantite_disponible = ? WHERE id_livre = ?";
         
         try (
             Connection con = ConnexionBD.getConnexion();
