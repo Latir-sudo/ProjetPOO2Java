@@ -29,8 +29,6 @@ public class FormulaireLivreController {
   
         statutCombo.getItems().addAll("Disponible", "Indisponible", "Réservé", "En réparation");
         statutCombo.setValue("Disponible");
-        
-        
         quantiteField.setText("1");
         disponiblesField.setText("1");
     }

@@ -15,7 +15,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="500.0"
             xmlns="http://javafx.com/javafx/17" 
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="FX1.controller.FormulaireLivreController"
+            fx:controller="org.example.controller.FormulaireLivreController"
             stylesheets="@../css/style.css">
 
     <children>
