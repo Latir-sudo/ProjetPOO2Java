@@ -1,4 +1,4 @@
-package org.bibliotheque.model;
+package org.example.model;
 
 public class Livre {
     private int idLivre;

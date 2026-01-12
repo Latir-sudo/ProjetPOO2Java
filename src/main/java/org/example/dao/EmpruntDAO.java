@@ -1,4 +1,6 @@
-package org.bibliotheque.dao;
+package org.example.dao;
+
+import org.example.model.Emprunt;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +10,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bibliotheque.model.Emprunt;
 
 public class EmpruntDAO {
 

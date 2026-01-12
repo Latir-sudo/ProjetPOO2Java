@@ -1,4 +1,6 @@
-package org.bibliotheque.dao;
+package org.example.dao;
+
+import org.example.model.Utilisateur;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +10,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bibliotheque.model.Utilisateur;
 
 public class UtilisateurDAO {
 

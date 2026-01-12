@@ -1,4 +1,4 @@
-package org.bibliotheque.dao;
+package org.example.dao;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,16 +1,4 @@
-package org.bibliotheque.controller;
-
-import java.net.URL;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
-
-import org.bibliotheque.dao.DatabaseConnection;
-import org.bibliotheque.dao.EmpruntDAO;
-import org.bibliotheque.dao.LivreDAO;
-import org.bibliotheque.dao.StatistiquesDAO;
-import org.bibliotheque.dao.UtilisateurDAO;
-import org.bibliotheque.model.Emprunt;
+package org.example.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.example.dao.*;
+import org.example.model.Emprunt;
+
+import java.net.URL;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 public class BibliothequeController implements Initializable {
 

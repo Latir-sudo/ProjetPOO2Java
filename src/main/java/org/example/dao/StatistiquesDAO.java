@@ -1,4 +1,6 @@
-package org.bibliotheque.dao;
+package org.example.dao;
+
+import org.example.dao.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
