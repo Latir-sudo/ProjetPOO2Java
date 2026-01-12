@@ -28,4 +28,9 @@ public class Utilisateur {
     public void setMatricule(String matricule) { this.matricule = matricule;}
     public String getTypeUtilisateur() {return typeUtilisateur;}
     public void setTypeUtilisateur(String typeUtilisateur){this.typeUtilisateur=typeUtilisateur;}
+
+    @Override
+    public String toString() {
+        return id + " - " + nom + " " + prenom + " (" + matricule + ")";
+    }
 }

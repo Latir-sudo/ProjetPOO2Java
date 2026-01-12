@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.EmpruntController">
+   <top>
+      <VBox prefHeight="100.0" prefWidth="1100.0" spacing="15.0" style="-fx-padding: 20;" BorderPane.alignment="CENTER">
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Button prefHeight="40.0" prefWidth="40.0" style="-fx-font-size: 16; -fx-padding: 10; -fx-cursor: hand; -fx-background-color: transparent;">
+               <graphic>
+                  <Label text="⬅" style="-fx-font-size: 20; -fx-text-fill: #C85A17;" />
+               </graphic>
+            </Button>
+            <Label fx:id="titleLabel" text="Gestion des Emprunts" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <TextField fx:id="searchField" promptText="Rechercher un emprunt..." style="-fx-padding: 10; -fx-font-size: 12; -fx-border-color: #ddd; -fx-border-radius: 5; -fx-background-radius: 5;" prefWidth="300.0" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="newEmpruntBtn" text="Nouvel emprunt" style="-fx-padding: 10 20; -fx-font-size: 12; -fx-background-color: #000; -fx-text-fill: white; -fx-cursor: hand; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <Button fx:id="returnEmpruntBtn" text="✓ Enregistrer retour" style="-fx-padding: 10 20; -fx-font-size: 12; -fx-background-color: #C85A17; -fx-text-fill: white; -fx-cursor: hand; -fx-border-radius: 5; -fx-background-radius: 5;" />
+         </HBox>
+      </VBox>
+   </top>
+   <center>
+      <VBox style="-fx-padding: 20;" BorderPane.alignment="CENTER">
+         <TableView fx:id="empruntTable" prefHeight="600.0" prefWidth="1050.0" style="-fx-font-size: 11;">
+            <columns>
+               <TableColumn fx:id="idColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="ID" />
+               <TableColumn fx:id="utilisateurColumn" minWidth="150.0" prefWidth="150.0" text="Utilisateur" />
+               <TableColumn fx:id="livreColumn" minWidth="150.0" prefWidth="150.0" text="Livre" />
+               <TableColumn fx:id="dateEmpruntColumn" minWidth="100.0" prefWidth="100.0" text="Date emprunt" />
+               <TableColumn fx:id="retourPrevuColumn" minWidth="100.0" prefWidth="100.0" text="Retour prévu" />
+               <TableColumn fx:id="retourEffectifColumn" minWidth="100.0" prefWidth="100.0" text="Retour effectif" />
+               <TableColumn fx:id="penaliteColumn" minWidth="80.0" prefWidth="80.0" text="Pénalité" />
+               <TableColumn fx:id="statutColumn" minWidth="100.0" prefWidth="100.0" text="Statut" />
+               <TableColumn fx:id="actionsColumn" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="Actions" />
+            </columns>
+            <style>
+               -fx-header-background-color: #C85A17;
+               -fx-text-base-color: white;
+               -fx-text-fill: white;
+               -fx-padding: 5;
+            </style>
+         </TableView>
+      </VBox>
+   </center>
+</BorderPane>

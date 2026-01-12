@@ -13,6 +13,7 @@ public class UtlisateurService {
         List<Utilisateur> users = new ArrayList<Utilisateur>();
         String sql = "SELECT * FROM utilisateurs";
         int count = 0;
+        System.out.println("[UtlisateurService] Exécution de la requête: " + sql);
         try (
                 Connection con = DbConnection.getConnection();
                 Statement stmt = con.createStatement();
@@ -32,9 +33,10 @@ public class UtlisateurService {
                 users.add(user);
             }
         } catch (Exception e) {
+            System.err.println("[UtlisateurService] Erreur lors de la récupération des utilisateurs");
             e.printStackTrace();
         }
-        System.out.println("le nombre d'utilisateurs :"+ count);
+        System.out.println("[UtlisateurService] ✓ Nombre d'utilisateurs récupérés: " + count);
         return users;
     }
 

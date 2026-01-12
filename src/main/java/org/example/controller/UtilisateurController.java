@@ -1,5 +1,10 @@
 package org.example.controller;
 
+import java.util.List;
+
+import org.example.model.Utilisateur;
+import org.example.service.UtlisateurService;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -7,15 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
-import org.example.model.Utilisateur;
-import org.example.service.UtlisateurService;
-import org.kordamp.ikonli.javafx.FontIcon;
-
-import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.util.List;
 
 public class UtilisateurController {
 
@@ -40,12 +39,23 @@ public class UtilisateurController {
 
     @FXML
     public void initialize() {
+        System.out.println("[UtilisateurController] Initialisation du contrôleur");
+        
+        // Vérifier que la TableView est injectée
+        if (tableau == null) {
+            System.err.println("[UtilisateurController] ERREUR: TableView 'tableau' n'est pas injectée!");
+        } else {
+            System.out.println("[UtilisateurController] TableView 'tableau' injectée avec succès");
+        }
+        
         // Liaison colonnes → propriétés du modèle
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         matricule.setCellValueFactory(new PropertyValueFactory<>("matricule"));
         typeUtilisateur.setCellValueFactory(new PropertyValueFactory<>("typeUtilisateur"));
+
+        System.out.println("[UtilisateurController] Colonnes liées aux propriétés du modèle");
 
         // Ajouter les boutons par ligne
         addButtonsToTable();

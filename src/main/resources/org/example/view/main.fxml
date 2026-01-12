@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.MainController">
+    <!-- Menu principal -->
+    <top>
+        <VBox prefHeight="80.0" prefWidth="1100.0" spacing="15.0" style="-fx-padding: 20; -fx-background-color: white; -fx-border-color: #ddd; -fx-border-width: 0 0 1 0;">
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <Label text="📚" style="-fx-font-size: 24;">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Label text="Gestion de Bibliothèque" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+                <Button fx:id="btnUtilisateurs" text="👤 Utilisateurs" style="-fx-padding: 10 20; -fx-font-size: 12; -fx-background-color: #C85A17; -fx-text-fill: white; -fx-cursor: hand; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                <Button fx:id="btnEmprunts" text="📖 Emprunts" style="-fx-padding: 10 20; -fx-font-size: 12; -fx-background-color: #666; -fx-text-fill: white; -fx-cursor: hand; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                <Button fx:id="btnLivres" text="📕 Livres" style="-fx-padding: 10 20; -fx-font-size: 12; -fx-background-color: #666; -fx-text-fill: white; -fx-cursor: hand; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            </HBox>
+        </VBox>
+    </top>
+    
+    <!-- Contenu dynamique -->
+    <center>
+        <StackPane fx:id="contentPane" prefHeight="600.0" prefWidth="1100.0">
+            <!-- La page sera chargée ici dynamiquement -->
+        </StackPane>
+    </center>
+</BorderPane>
