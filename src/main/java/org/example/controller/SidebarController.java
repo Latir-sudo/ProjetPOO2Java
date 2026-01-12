@@ -18,13 +18,13 @@ public class SidebarController {
     @FXML private Button btnGestionUsers;
     @FXML private Button btnGestionLivres;
     @FXML private Button btnGestionEmprunts;
-    @FXML private Button btnStatistique;
+    @FXML private Button btnStatistiques;
 
     public void initialize(){
         btnDashboard.setOnAction(event -> mainController.setCenter("accueil.fxml"));
         btnGestionUsers.setOnAction(event -> mainController.setCenter("user.fxml"));
         btnGestionLivres.setOnAction(event -> mainController.setCenter("sample.fxml"));
         btnGestionEmprunts.setOnAction(event -> mainController.setCenter("emprunts.fxml"));
-
+        btnStatistiques.setOnAction(event -> mainController.setCenter("graphique.fxml"));
     }
 }
