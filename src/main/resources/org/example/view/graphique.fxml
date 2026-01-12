@@ -48,7 +48,7 @@
                             <Label text=" Livres les plus empruntés" 
                                    style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2d3436;" />
                             <VBox fx:id="livresChartContainer" prefHeight="300" 
-                                  style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-padding: 10;" />
+                                  style="-fx-background-color: #4444; -fx-background-radius: 8; -fx-padding: 10;" />
                         </VBox>
                         
                         <!-- Graphique Utilisateurs -->
@@ -57,7 +57,7 @@
                             <Label text=" Répartition des utilisateurs" 
                                    style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2d3436;" />
                             <VBox fx:id="pieChartContainer" prefHeight="300" 
-                                  style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-padding: 10;" />
+                                  style="-fx-background-color: #4444; -fx-background-radius: 8; -fx-padding: 10;" />
                         </VBox>
                     </HBox>
 
@@ -67,7 +67,7 @@
                         <Label text="Top 10 des utilisateurs les plus actifs" 
                                style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2d3436;" />
                         <VBox fx:id="evolutionChartContainer" prefHeight="350" 
-                              style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-padding: 10;" />
+                              style="-fx-background-color: #4444; -fx-background-radius: 8; -fx-padding: 10;" />
                     </VBox>
 
                     <!-- Troisième ligne: Tableau des emprunts en retard -->
