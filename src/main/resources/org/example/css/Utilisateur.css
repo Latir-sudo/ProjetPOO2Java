@@ -333,8 +333,8 @@ StackPane {
         -fx-pref-width: 250px;
     }
 }
-=======
- }
+
+
 
  /* TableView Header Styling */
  .table-view .column-header-background {
@@ -369,4 +369,4 @@ StackPane {
  .enregistrer_couleur{
      -fx-background-color: #B55C2D;
  }
->>>>>>> GestionEmprunt
+
