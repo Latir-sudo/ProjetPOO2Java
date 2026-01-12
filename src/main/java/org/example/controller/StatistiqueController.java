@@ -246,7 +246,7 @@ public class StatistiqueController implements Initializable {
             int empruntsRetard = statistiqueService.getEmpruntsEnRetard();
             
             String message = String.format(
-                "📊 Statistiques : %d livres • %d utilisateurs • %d emprunts • %d en retard",
+                "Statistiques : %d livres • %d utilisateurs • %d emprunts • %d en retard",
                 totalLivres, totalUtilisateurs, totalEmprunts, empruntsRetard
             );
             

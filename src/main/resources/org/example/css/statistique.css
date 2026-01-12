@@ -15,7 +15,7 @@
 /* En-têtes de colonnes */
 .table-view .column-header {
     -fx-background-color: #B55C2D;
-    -fx-text-fill: white;
+    -fx-text-fill: rgb(0, 0, 0);
     -fx-font-weight: bold;
     -fx-font-size: 12px;
     -fx-padding: 8 10;
