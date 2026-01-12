@@ -34,7 +34,7 @@ public class DatabaseConnection {
             
             String host = props.getProperty("db.host", "localhost");
             String port = props.getProperty("db.port", "3306");
-            String dbName = props.getProperty("db.name", "biblio_univ");
+            String dbName = props.getProperty("db.name", "bibliot");
             
             this.url = String.format(
                 "jdbc:mysql://%s:%s/%s?useSSL=false&serverTimezone=UTC",
@@ -42,7 +42,7 @@ public class DatabaseConnection {
             );
             
             this.username = props.getProperty("db.user", "root");
-            this.password = props.getProperty("db.password", "");
+            this.password = props.getProperty("db.password", "francois12");
             
             System.out.println("✅ Configuration chargée depuis db.properties");
             
@@ -53,9 +53,9 @@ public class DatabaseConnection {
     }
     
     private void setDefaultConfig() {
-        this.url = "jdbc:mysql://localhost:3306/biblio_univ?useSSL=false&serverTimezone=UTC";
+        this.url = "jdbc:mysql://localhost:3306/bibliotheque?useSSL=false&serverTimezone=UTC";
         this.username = "root";
-        this.password = "";
+        this.password = "francois12";
         System.out.println("✅ Configuration par défaut");
     }
     

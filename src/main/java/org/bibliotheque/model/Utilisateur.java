@@ -1,61 +1,42 @@
 package org.bibliotheque.model;
 
-import java.time.LocalDate;
-
 public class Utilisateur {
-    private int id;
-    private String code;
+    private int idUtilisateur;
     private String nom;
     private String prenom;
-    private String email;
-    private String telephone;
-    private String type;
-    private LocalDate dateInscription;
-    private String statut;
-    
+    private String matricule;
+    private String typeUtilisateur; // "ENSEIGNANT", "ETUDIANT", etc.
+
+    // Constructeurs
     public Utilisateur() {}
-    
-    public Utilisateur(String code, String nom, String prenom, String email, String type) {
-        this.code = code;
+
+    public Utilisateur(int idUtilisateur, String nom, String prenom,
+                       String matricule, String typeUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
         this.nom = nom;
         this.prenom = prenom;
-        this.email = email;
-        this.type = type;
+        this.matricule = matricule;
+        this.typeUtilisateur = typeUtilisateur;
     }
-    
-    // Getters
-    public int getId() { return id; }
-    public String getCode() { return code; }
+
+    // Getters et Setters
+    public int getIdUtilisateur() { return idUtilisateur; }
+    public void setIdUtilisateur(int idUtilisateur) { this.idUtilisateur = idUtilisateur; }
+
     public String getNom() { return nom; }
-    public String getPrenom() { return prenom; }
-    public String getEmail() { return email; }
-    public String getTelephone() { return telephone; }
-    public String getType() { return type; }
-    public LocalDate getDateInscription() { return dateInscription; }
-    public String getStatut() { return statut; }
-    
-    // Setters
-    public void setId(int id) { this.id = id; }
-    public void setCode(String code) { this.code = code; }
     public void setNom(String nom) { this.nom = nom; }
+
+    public String getPrenom() { return prenom; }
     public void setPrenom(String prenom) { this.prenom = prenom; }
-    public void setEmail(String email) { this.email = email; }
-    public void setTelephone(String telephone) { this.telephone = telephone; }
-    public void setType(String type) { this.type = type; }
-    public void setDateInscription(LocalDate dateInscription) { this.dateInscription = dateInscription; }
-    public void setStatut(String statut) { this.statut = statut; }
-    
-    // Méthodes utilitaires
-    public String getNomComplet() {
-        return prenom + " " + nom;
-    }
-    
-    public String getCodeAvecNom() {
-        return getNomComplet() + " (" + code + ")";
-    }
-    
+
+    public String getMatricule() { return matricule; }
+    public void setMatricule(String matricule) { this.matricule = matricule; }
+
+    public String getTypeUtilisateur() { return typeUtilisateur; }
+    public void setTypeUtilisateur(String typeUtilisateur) { this.typeUtilisateur = typeUtilisateur; }
+
     @Override
     public String toString() {
-        return getCodeAvecNom();
+        return nom + " " + prenom + " (" + matricule + ")";
     }
 }
