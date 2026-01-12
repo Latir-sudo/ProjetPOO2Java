@@ -1,26 +1,27 @@
 package org.example.service;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.chart.PieChart;
-import javafx.scene.chart.XYChart;
-import org.example.util.DbConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.example.model.EmpruntEnRetard;
+import org.example.util.DbConnection;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
+
 public class StatistiqueService {
 
-    // Livres les plus empruntés
     public ObservableList<XYChart.Data<String, Number>> getLivresPlusEmpruntes(int limit) {
         ObservableList<XYChart.Data<String, Number>> data = FXCollections.observableArrayList();
 
-        // CORRECTION : Requête SQL
         String sql = """
-            SELECT l.titre, COUNT(e.id_emprunts) as nb_emprunts
+            SELECT l.titre, COUNT(emprunts.id_emprunt) as nb_emprunts
             FROM livres l
-            LEFT JOIN emprunts e ON l.id_livre = e.livre
+            LEFT JOIN emprunts ON l.id_livre = emprunts.livre
             GROUP BY l.id_livre, l.titre
             ORDER BY nb_emprunts DESC
             LIMIT ?
@@ -46,7 +47,6 @@ public class StatistiqueService {
         return data;
     }
 
-    // Répartition étudiants / enseignants
     public ObservableList<PieChart.Data> repartitionUtilisateurs() {
         ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
 
@@ -65,7 +65,6 @@ public class StatistiqueService {
                 String type = rs.getString("type_utilisateur");
                 int count = rs.getInt("nb_utilisateur");
 
-                // CORRECTION : Ajouter les données au pieData
                 String label = type.equals("ETUDIANT") ? "Étudiants" : "Enseignants";
                 pieData.add(new PieChart.Data(label + " (" + count + ")", count));
             }
@@ -78,18 +77,16 @@ public class StatistiqueService {
         return pieData;
     }
 
-    // Top des utilisateurs les plus actifs
     public ObservableList<XYChart.Data<String, Number>> topUtilisateurs(int limit) {
         ObservableList<XYChart.Data<String, Number>> data = FXCollections.observableArrayList();
 
-        // CORRECTION : Requête SQL
         String query = """
             SELECT 
-                CONCAT(u.nom, ' ', u.prenom) as nom_complet, 
-                COUNT(e.id_emprunts) as nb_emprunts
+                CONCAT(u.nom, ' ', u.prenom, ' (', u.matricule, ')') as nom_complet, 
+                COUNT(emprunts.id_emprunt) as nb_emprunts
             FROM utilisateurs u 
-            LEFT JOIN emprunts e ON u.id_utilisateur = e.utilisateur
-            GROUP BY u.id_utilisateur, u.nom, u.prenom 
+            LEFT JOIN emprunts ON u.id_utilisateur = emprunts.utilisateur
+            GROUP BY u.id_utilisateur, u.nom, u.prenom, u.matricule
             ORDER BY nb_emprunts DESC 
             LIMIT ?
             """;
@@ -107,14 +104,13 @@ public class StatistiqueService {
             }
 
         } catch (SQLException e) {
-            System.err.println(" Erreur topUtilisateurs: " + e.getMessage());
+            System.err.println("Erreur topUtilisateurs: " + e.getMessage());
             e.printStackTrace();
         }
 
         return data;
     }
 
-    // Statistiques générales (Bonus)
     public int getTotalLivres() {
         String sql = "SELECT COUNT(*) as total FROM livres";
         return getCount(sql);
@@ -140,6 +136,64 @@ public class StatistiqueService {
         return getCount(sql);
     }
 
+    public ObservableList<EmpruntEnRetard> getEmpruntsEnRetardDetails() {
+        ObservableList<EmpruntEnRetard> data = FXCollections.observableArrayList();
+
+        System.out.println("\n=== DEBUT RÉCUPÉRATION EMPRUNTS EN RETARD ===");
+        
+        String sql = """
+            SELECT 
+                emprunts.id_emprunt as id,
+                CONCAT(utilisateurs.nom, ' ', utilisateurs.prenom, ' (', utilisateurs.matricule, ')') as utilisateur,
+                livres.titre as livre,
+                DATE_FORMAT(emprunts.date_emprunt, '%d/%m/%Y') as dateEmprunt,
+                DATE_FORMAT(emprunts.date_retour_prevue, '%d/%m/%Y') as dateRetourPrevue,
+                DATEDIFF(CURDATE(), emprunts.date_retour_prevue) as joursRetard,
+                DATEDIFF(CURDATE(), emprunts.date_retour_prevue) * 0.5 as penalite
+            FROM emprunts
+            INNER JOIN utilisateurs ON emprunts.utilisateur = utilisateurs.id_utilisateur
+            INNER JOIN livres ON emprunts.livre = livres.id_livre
+            WHERE emprunts.date_retour_effective IS NULL 
+            AND emprunts.date_retour_prevue < CURDATE()
+            ORDER BY emprunts.date_retour_prevue ASC
+            """;
+
+        try (Connection con = DbConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            int count = 0;
+            while (rs.next()) {
+                count++;
+                int id = rs.getInt("id");
+                String utilisateur = rs.getString("utilisateur");
+                String livre = rs.getString("livre");
+                String dateEmprunt = rs.getString("dateEmprunt");
+                String dateRetourPrevue = rs.getString("dateRetourPrevue");
+                int joursRetard = rs.getInt("joursRetard");
+                double penalite = rs.getDouble("penalite");
+
+                System.out.printf("  %d. ID: %d, Utilisateur: %s, Livre: %s, Jours: %d%n", 
+                    count, id, utilisateur, livre, joursRetard);
+
+                EmpruntEnRetard emprunt = new EmpruntEnRetard(id, utilisateur, livre, 
+                                                              dateEmprunt, dateRetourPrevue, 
+                                                              joursRetard, penalite);
+                data.add(emprunt);
+            }
+            
+            System.out.println("Total d'emprunts en retard trouvés: " + count);
+
+        } catch (SQLException e) {
+            System.err.println("ERREUR getEmpruntsEnRetardDetails: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        System.out.println("=== FIN RÉCUPÉRATION ===");
+
+        return data;
+    }
+
     private int getCount(String sql) {
         try (Connection con = DbConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql);
@@ -150,26 +204,18 @@ public class StatistiqueService {
             }
 
         } catch (SQLException e) {
-            System.err.println(" Erreur getCount: " + e.getMessage());
+            System.err.println("Erreur getCount: " + e.getMessage());
         }
 
         return 0;
     }
 
-
-
-
-    // test de connexion pour les tables crées
-
-
-    // Méthode de test pour vérifier les noms de tables/colonnes
     public void testConnexionEtTables() {
         System.out.println("=== TEST DE CONNEXION ET TABLES ===");
 
         try (Connection con = DbConnection.getConnection()) {
             System.out.println("✓ Connexion à la base réussie");
 
-            // Vérifier les tables
             String[] tables = {"livres", "utilisateurs", "emprunts"};
 
             for (String table : tables) {

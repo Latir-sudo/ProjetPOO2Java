@@ -2,196 +2,272 @@ package org.example.controller;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Button;
-import javafx.scene.control.Alert;
+import org.example.model.EmpruntEnRetard;
 import org.example.service.StatistiqueService;
-import javafx.animation.Timeline;
-import javafx.animation.KeyFrame;
-import javafx.util.Duration;
-import javafx.scene.control.Label;
 
-public class StatistiqueController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    @FXML
-    private VBox livresChartContainer;
-    @FXML
-    private VBox pieChartContainer;
-    @FXML
-    private VBox evolutionChartContainer;
+public class StatistiqueController implements Initializable {
 
-    @FXML
-    private Button btnRefresh;
-    @FXML
-    private Label lblInfoMessage;
+    @FXML private VBox livresChartContainer;
+    @FXML private VBox pieChartContainer;
+    @FXML private VBox evolutionChartContainer;
+    @FXML private TableView<EmpruntEnRetard> tableEmpruntsRetard;
+    @FXML private Label lblInfoMessage;
+    @FXML private Button btnRefresh;
+    @FXML private Label lblCount;
 
-    private BarChart<String, Number> livresChart;
-    private PieChart usersPieChart;
-    private BarChart<String, Number> evolutionChart;
+    private StatistiqueService statistiqueService = new StatistiqueService();
 
-    private final StatistiqueService statsService = new StatistiqueService();
-
-    @FXML
-    public void initialize() {
-        // test de connexion pour les tables créées
-        statsService.testConnexionEtTables();
-
-        // création et ajout des graphiques dynamiquement
-        createLivreChart();
-        createPieChart();
-        createEvolutionChart();
-
-        // charger les données dans les graphiques respectifs
-        loadChartData();
-
-        // Initialiser les boutons
-        setupButtons();
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("=== INITIALISATION STATISTIQUES ===");
+        
+        try {
+            // Initialisation de la table
+            initialiserTableView();
+            
+            // Chargement de toutes les données
+            chargerToutesDonnees();
+            
+            System.out.println("=== INITIALISATION TERMINÉE ===");
+            
+        } catch (Exception e) {
+            System.err.println("ERREUR lors de l'initialisation: " + e.getMessage());
+            e.printStackTrace();
+            lblInfoMessage.setText("Erreur lors du chargement des données!");
+            lblInfoMessage.setStyle("-fx-text-fill: red;");
+        }
     }
 
-    private void setupButtons() {
-        // Configuration des actions des boutons
-        btnRefresh.setOnAction(event -> handleRefresh());
-        // Message d'information initial
-        lblInfoMessage.setText("Données chargées - " + java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+    private void initialiserTableView() {
+        System.out.println("Initialisation de la TableView...");
+        
+        if (tableEmpruntsRetard == null) {
+            System.err.println("ERREUR: TableView est null!");
+            return;
+        }
+        
+        // Vider les colonnes existantes
+        tableEmpruntsRetard.getColumns().clear();
+        
+        // Créer les colonnes avec PropertyValueFactory
+        TableColumn<EmpruntEnRetard, Integer> idCol = new TableColumn<>("ID");
+        idCol.setPrefWidth(60);
+        idCol.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("id"));
+        idCol.setStyle("-fx-alignment: CENTER;");
+        
+        TableColumn<EmpruntEnRetard, String> utilisateurCol = new TableColumn<>("Utilisateur");
+        utilisateurCol.setPrefWidth(200);
+        utilisateurCol.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("utilisateur"));
+        
+        TableColumn<EmpruntEnRetard, String> livreCol = new TableColumn<>("Livre");
+        livreCol.setPrefWidth(180);
+        livreCol.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("livre"));
+        
+        TableColumn<EmpruntEnRetard, String> dateEmpruntCol = new TableColumn<>("Date Emprunt");
+        dateEmpruntCol.setPrefWidth(120);
+        dateEmpruntCol.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("dateEmprunt"));
+        dateEmpruntCol.setStyle("-fx-alignment: CENTER;");
+        
+        TableColumn<EmpruntEnRetard, String> dateRetourCol = new TableColumn<>("Retour Prévu");
+        dateRetourCol.setPrefWidth(120);
+        dateRetourCol.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("dateRetourPrevue"));
+        dateRetourCol.setStyle("-fx-alignment: CENTER;");
+        
+        TableColumn<EmpruntEnRetard, Integer> joursRetardCol = new TableColumn<>("Jours Retard");
+        joursRetardCol.setPrefWidth(100);
+        joursRetardCol.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("joursRetard"));
+        joursRetardCol.setStyle("-fx-alignment: CENTER;");
+        
+        TableColumn<EmpruntEnRetard, Double> penaliteCol = new TableColumn<>("Pénalité (€)");
+        penaliteCol.setPrefWidth(120);
+        penaliteCol.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("penalite"));
+        
+        // Formater la colonne Pénalité
+        penaliteCol.setCellFactory(column -> new TableCell<EmpruntEnRetard, Double>() {
+            @Override
+            protected void updateItem(Double item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle("");
+                } else {
+                    setText(String.format("%.2f €", item));
+                    setStyle("-fx-alignment: CENTER_RIGHT; -fx-font-weight: bold;");
+                }
+            }
+        });
+        
+        // Ajouter toutes les colonnes
+        tableEmpruntsRetard.getColumns().addAll(
+            idCol, utilisateurCol, livreCol, dateEmpruntCol,
+            dateRetourCol, joursRetardCol, penaliteCol
+        );
+        
+        System.out.println("TableView initialisée avec " + tableEmpruntsRetard.getColumns().size() + " colonnes");
+    }
+
+    private void chargerToutesDonnees() {
+        System.out.println("Chargement des données...");
+        
+        // Charger les emprunts en retard
+        chargerEmpruntsRetard();
+        
+        // Charger les graphiques
+        chargerGraphiqueLivres();
+        chargerGraphiqueUtilisateurs();
+        chargerGraphiqueTopUtilisateurs();
+        
+        // Mettre à jour les statistiques générales
+        mettreAJourMessageInfo();
+    }
+
+    private void chargerEmpruntsRetard() {
+        System.out.println("Chargement des emprunts en retard...");
+        
+        try {
+            ObservableList<EmpruntEnRetard> emprunts = statistiqueService.getEmpruntsEnRetardDetails();
+            System.out.println("Nombre d'emprunts trouvés: " + emprunts.size());
+            
+            // Mettre à jour le compteur
+            if (lblCount != null) {
+                lblCount.setText("(" + emprunts.size() + " emprunts)");
+            }
+            
+            // Définir les données
+            tableEmpruntsRetard.setItems(emprunts);
+            
+            // Rafraîchir
+            tableEmpruntsRetard.refresh();
+            
+            if (emprunts.isEmpty()) {
+                System.out.println("Aucun emprunt en retard trouvé.");
+            } else {
+                // Afficher les 2 premiers pour vérifier
+                for (int i = 0; i < Math.min(emprunts.size(), 2); i++) {
+                    EmpruntEnRetard e = emprunts.get(i);
+                    System.out.printf("  Exemple %d: ID=%d, User=%s%n", i+1, e.getId(), e.getUtilisateur());
+                }
+            }
+            
+        } catch (Exception e) {
+            System.err.println("ERREUR lors du chargement des emprunts: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void chargerGraphiqueLivres() {
+        try {
+            livresChartContainer.getChildren().clear();
+            
+            CategoryAxis xAxis = new CategoryAxis();
+            xAxis.setLabel("Livres");
+            NumberAxis yAxis = new NumberAxis();
+            yAxis.setLabel("Nombre d'emprunts");
+            
+            BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
+            barChart.setTitle("Top 5 des livres les plus empruntés");
+            barChart.setLegendVisible(false);
+            
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            series.setName("Emprunts");
+            
+            ObservableList<XYChart.Data<String, Number>> data = statistiqueService.getLivresPlusEmpruntes(5);
+            series.getData().addAll(data);
+            
+            barChart.getData().add(series);
+            barChart.setPrefHeight(300);
+            
+            livresChartContainer.getChildren().add(barChart);
+            
+        } catch (Exception e) {
+            System.err.println("Erreur lors du chargement du graphique livres: " + e.getMessage());
+        }
+    }
+
+    private void chargerGraphiqueUtilisateurs() {
+        try {
+            pieChartContainer.getChildren().clear();
+            
+            PieChart pieChart = new PieChart();
+            pieChart.setTitle("Répartition des utilisateurs");
+            pieChart.setData(statistiqueService.repartitionUtilisateurs());
+            pieChart.setLabelsVisible(true);
+            pieChart.setLegendVisible(true);
+            pieChart.setPrefHeight(300);
+            
+            pieChartContainer.getChildren().add(pieChart);
+            
+        } catch (Exception e) {
+            System.err.println("Erreur lors du chargement du graphique utilisateurs: " + e.getMessage());
+        }
+    }
+
+    private void chargerGraphiqueTopUtilisateurs() {
+        try {
+            evolutionChartContainer.getChildren().clear();
+            
+            CategoryAxis xAxis = new CategoryAxis();
+            xAxis.setLabel("Utilisateurs");
+            NumberAxis yAxis = new NumberAxis();
+            yAxis.setLabel("Nombre d'emprunts");
+            
+            BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
+            barChart.setTitle("Top 10 des utilisateurs les plus actifs");
+            barChart.setLegendVisible(false);
+            
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            series.setName("Emprunts");
+            
+            ObservableList<XYChart.Data<String, Number>> data = statistiqueService.topUtilisateurs(10);
+            series.getData().addAll(data);
+            
+            barChart.getData().add(series);
+            barChart.setPrefHeight(350);
+            
+            evolutionChartContainer.getChildren().add(barChart);
+            
+        } catch (Exception e) {
+            System.err.println("Erreur lors du chargement du graphique top utilisateurs: " + e.getMessage());
+        }
+    }
+
+    private void mettreAJourMessageInfo() {
+        try {
+            int totalLivres = statistiqueService.getTotalLivres();
+            int totalUtilisateurs = statistiqueService.getTotalUtilisateurs();
+            int totalEmprunts = statistiqueService.getTotalEmprunts();
+            int empruntsRetard = statistiqueService.getEmpruntsEnRetard();
+            
+            String message = String.format(
+                "📊 Statistiques : %d livres • %d utilisateurs • %d emprunts • %d en retard",
+                totalLivres, totalUtilisateurs, totalEmprunts, empruntsRetard
+            );
+            
+            lblInfoMessage.setText(message);
+            
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la mise à jour des statistiques: " + e.getMessage());
+            lblInfoMessage.setText("Erreur lors du chargement des statistiques");
+        }
     }
 
     @FXML
     private void handleRefresh() {
-        try {
-            // Désactiver le bouton pendant le rafraîchissement
-            btnRefresh.setDisable(true);
-            btnRefresh.setText("🔄 Chargement...");
-
-            // Rafraîchir les données
-            loadChartData();
-
-            // Mettre à jour le message
-            lblInfoMessage.setText("Données rafraîchies - " + java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
-
-            // Réactiver le bouton après un délai
-            Timeline timeline = new Timeline(
-                    new KeyFrame(Duration.seconds(1), e -> {
-                        btnRefresh.setText("🔄 Actualiser");
-                        btnRefresh.setDisable(false);
-
-                        // Afficher un message de succès
-                        showAlert("Succès", "Données rafraîchies avec succès", Alert.AlertType.INFORMATION);
-                    })
-            );
-            timeline.play();
-
-        } catch (Exception e) {
-            System.err.println("Erreur lors du rafraîchissement: " + e.getMessage());
-            showAlert("Erreur", "Impossible de rafraîchir les données: " + e.getMessage(), Alert.AlertType.ERROR);
-            btnRefresh.setText("🔄 Actualiser");
-            btnRefresh.setDisable(false);
-        }
-    }
-    private void showAlert(String title, String message, Alert.AlertType type) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    private void createLivreChart() {
-        // créer les axes d'abord
-        CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Livre");
-
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Nombre d'emprunts");
-
-        // créer le barchart
-        livresChart = new BarChart<>(xAxis, yAxis);
-        livresChart.setLegendVisible(false);
-        livresChart.setPrefHeight(300);
-        livresChart.setTitle("Livres les plus empruntés");
-        livresChartContainer.getChildren().add(livresChart);
-    }
-
-    private void createPieChart() {
-        // créer le PieChart
-        usersPieChart = new PieChart();
-        usersPieChart.setTitle("Répartition des utilisateurs");
-        usersPieChart.setPrefHeight(300);
-        usersPieChart.setLabelsVisible(true);
-        usersPieChart.setLegendVisible(true);
-
-        // ajouter le graphe au conteneur correspondant
-        pieChartContainer.getChildren().add(usersPieChart);
-    }
-
-    private void createEvolutionChart() {
-        CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Utilisateurs");
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Nombre d'emprunts");
-
-        evolutionChart = new BarChart<>(xAxis, yAxis);
-        evolutionChart.setTitle("Top 10 des utilisateurs les plus actifs");
-        evolutionChart.setLegendVisible(false);
-        evolutionChart.setPrefHeight(300);
-        evolutionChartContainer.getChildren().add(evolutionChart);
-    }
-
-    private void loadChartData() {
-        // chargement des données dans les graphiques
-        loadLivresData();
-        loadUsersData();
-        loadEvolutionData();
-    }
-
-    private void loadLivresData() {
-        try {
-            XYChart.Series<String, Number> series = new XYChart.Series<>();
-            series.setName("Livres");
-
-            ObservableList<XYChart.Data<String, Number>> livresData =
-                    statsService.getLivresPlusEmpruntes(10);
-
-            series.getData().addAll(livresData);
-
-            livresChart.getData().clear();
-            livresChart.getData().add(series);
-
-        } catch (Exception e) {
-            System.err.println("Erreur lors du chargement des données livres: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    private void loadUsersData() {
-        try {
-            usersPieChart.getData().clear();
-
-            ObservableList<PieChart.Data> pieData = statsService.repartitionUtilisateurs();
-            usersPieChart.getData().addAll(pieData);
-
-        } catch (Exception e) {
-            System.err.println("Erreur lors du chargement des données utilisateurs: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    private void loadEvolutionData() {
-        try {
-            XYChart.Series<String, Number> series = new XYChart.Series<>();
-            series.setName("Top 10 des utilisateurs les plus actifs");
-
-            ObservableList<XYChart.Data<String, Number>> topData =
-                    statsService.topUtilisateurs(10);
-
-            series.getData().addAll(topData);
-
-            evolutionChart.getData().clear();
-            evolutionChart.getData().add(series);
-
-        } catch (Exception e) {
-            System.err.println("Erreur lors du chargement des données évolution: " + e.getMessage());
-            e.printStackTrace();
-        }
+        System.out.println("=== RAFRAICHISSEMENT DES DONNÉES ===");
+        
+        // Recharger toutes les données
+        chargerToutesDonnees();
+        
+        lblInfoMessage.setText("Données actualisées avec succès !");
+        lblInfoMessage.setStyle("-fx-text-fill: #2ecc71;");
+        
+        System.out.println("=== RAFRAICHISSEMENT TERMINÉ ===");
     }
 }
