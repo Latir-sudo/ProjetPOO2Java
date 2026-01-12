@@ -19,7 +19,7 @@
 
 .close:hover{
 
-    -fx-background-color:#ff3547;
+    -fx-background-color:#B55C2D;
  }
 
  .minimise {
@@ -101,10 +101,10 @@
    -fx-background-color:#1ABC9C;
  }
  .card-emprunt{
-  -fx-background-color:#F39C12;
+  -fx-background-color:#B55C2D;
  }
  .card-retard {
-   -fx-background-color:#E74C3C;
+   -fx-background-color:#B55C2D;
  }
 
  .btn-ajout {
@@ -121,11 +121,11 @@
 
  /* TableView Header Styling */
  .table-view .column-header-background {
-     -fx-background-color: #C85A17;
+     -fx-background-color: #B55C2D;
  }
 
  .table-view .column-header {
-     -fx-background-color: #C85A17;
+     -fx-background-color: #B55C2D;
      -fx-text-fill: white;
      -fx-font-weight: bold;
      -fx-font-size: 12;
@@ -147,4 +147,8 @@
 
  .table-row-cell:hover {
      -fx-background-color: #f0f0f0;
+ }
+
+ .enregistrer_couleur{
+     -fx-background-color: #B55C2D;
  }
