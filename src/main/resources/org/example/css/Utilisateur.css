@@ -107,13 +107,19 @@
    -fx-background-color:#E74C3C;
  }
 
- .btn-ajout {
+ .button.btn-ajout {
    -fx-background-color: #B55C2D;
      -fx-text-fill: #fff;
      -fx-background-radius: 10;
  }
 
- .btn-ajout:hover {
+.button.update:disabled {
+    -fx-opacity: 1.0;
+    -fx-background-color: #4CAF50;
+}
+
+
+.btn-ajout:hover {
      -fx-background-color: #B55C2D;
      -fx-text-fill: #fff;
 
@@ -282,10 +288,6 @@ StackPane {
 }
 
 /* Container des boutons */
-HBox {
-    -fx-alignment: center;
-    -fx-spacing: 20;
-}
 
 /* Message d'erreur centré */
 .error-message {
@@ -306,6 +308,10 @@ HBox {
     -fx-font-size: 12px;
     -fx-font-style: italic;
     -fx-alignment: center;
+}
+
+.column-header-background {
+    -fx-background-color: #B55C2D;
 }
 
 /* Responsive : quand l'écran est petit */

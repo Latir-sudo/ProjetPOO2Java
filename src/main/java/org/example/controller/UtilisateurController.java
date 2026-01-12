@@ -206,6 +206,9 @@ public class UtilisateurController {
         Node addButtonNode = dialog.getDialogPane().lookupButton(addButton);
         addButtonNode.setDisable(true);
 
+        Button ajouter = (Button) addButtonNode;
+        ajouter.getStyleClass().add("btn-ajout");
+
         // Activer le bouton quand tous les champs sont remplis
 
         Runnable checkFields = () -> {
@@ -281,7 +284,7 @@ public class UtilisateurController {
         matriculeField.setPromptText("Matricule");
 
         ComboBox<String> typeUtilisateur = new ComboBox<>();
-        typeUtilisateur.getItems().addAll("ETUDIANT", "PROFESSEUR");
+        typeUtilisateur.getItems().addAll("ETUDIANT", "ENSEIGNANT");
         typeUtilisateur.setValue(utilisateurActuel.getTypeUtilisateur()); // Pré-sélectionner
 
         grid.add(new Label("Nom:"), 0, 0);

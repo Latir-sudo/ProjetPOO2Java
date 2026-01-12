@@ -15,7 +15,7 @@
 
             <!-- Entête principal -->
             <HBox spacing="20.0" styleClass="shadow white-bg">
-                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                <HBox spacing="20.0">
                     <!-- Remplacement de FontIcon par Label -->
                     <Label text="👤" styleClass="icon-principal">
                         <font>
@@ -31,10 +31,10 @@
             </HBox>
 
             <!-- Barre de recherche et bouton -->
-            <HBox spacing="20.0" alignment="CENTER_LEFT">
+            <HBox spacing="20.0">
 
                 <!-- Barre de recherche -->
-                <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="shadow white-bg">
+                <HBox  spacing="10.0" styleClass="shadow white-bg">
                     <!-- Remplacement de FontIcon par Label -->
                     <Label text="🔍">
                         <font>
@@ -60,12 +60,18 @@
 
             <!-- TableView utilisateurs -->
             <TableView fx:id="tableau" VBox.vgrow="ALWAYS">
+                <style>
+
+                .column-header-background {
+                -fx-background-color: #B55C2D;
+                }
+            </style>
                 <columns>
-                    <TableColumn fx:id="id" text="ID" prefWidth="30"/>
-                    <TableColumn fx:id="nom" text="Nom" prefWidth="100"/>
-                    <TableColumn fx:id="prenom" text="Prenom" prefWidth="110"/>
-                    <TableColumn fx:id="matricule" text="Matricule" prefWidth="75"/>
-                    <TableColumn fx:id="typeUtilisateur" text="Type" prefWidth="100"/>
+                    <TableColumn fx:id="id" text="ID" prefWidth="30" styleClass="tableview"/>
+                    <TableColumn fx:id="nom" text="Nom" prefWidth="100" styleClass="tableview"/>
+                    <TableColumn fx:id="prenom" text="Prenom" prefWidth="110" styleClass="tableview"/>
+                    <TableColumn fx:id="matricule" text="Matricule" prefWidth="75" styleClass="tableview"/>
+                    <TableColumn fx:id="typeUtilisateur" text="Type" prefWidth="100" styleClass="tableview"/>
                     <TableColumn fx:id="action" text="Action" prefWidth="120"/>
                 </columns>
             </TableView>
