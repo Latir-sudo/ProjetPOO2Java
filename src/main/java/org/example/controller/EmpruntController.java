@@ -108,28 +108,60 @@ public class EmpruntController {
             }
         });
 
-        retourEffectifColumn.setCellValueFactory(new PropertyValueFactory<>("retourEffectif"));
         retourEffectifColumn.setCellFactory(column -> new TableCell<Emprunt, LocalDate>() {
             @Override
             protected void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText("Non retourné");
+
+                if (empty) {
+                    setText("");
                 } else {
-                    setText(dateFormatter.format(item));
+                    // Vérifier d'abord si l'index est valide
+                    int index = getIndex();
+                    TableView<Emprunt> tableView = getTableView();
+
+                    if (tableView == null || index < 0 || index >= tableView.getItems().size()) {
+                        setText("");
+                        return;
+                    }
+
+                    Emprunt emprunt = tableView.getItems().get(index);
+                    if (emprunt == null || emprunt.getId() == 0) {
+                        setText("");
+                    } else if (item == null) {
+                        setText("Non retourné");
+                    } else {
+                        setText(dateFormatter.format(item));
+                    }
                 }
             }
         });
 
-        penaliteColumn.setCellValueFactory(new PropertyValueFactory<>("penalite"));
         penaliteColumn.setCellFactory(column -> new TableCell<Emprunt, String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
-                if (empty || item == null || item.equals("0")) {
-                    setText("Aucune");
+
+                if (empty) {
+                    setText("");
                 } else {
-                    setText(item);
+                    // Vérifier d'abord si l'index est valide
+                    int index = getIndex();
+                    TableView<Emprunt> tableView = getTableView();
+
+                    if (tableView == null || index < 0 || index >= tableView.getItems().size()) {
+                        setText("");
+                        return;
+                    }
+
+                    Emprunt emprunt = tableView.getItems().get(index);
+                    if (emprunt == null || emprunt.getId() == 0) {
+                        setText("");
+                    } else if (item == null || item.equals("0") || item.trim().isEmpty()) {
+                        setText("Aucune");
+                    } else {
+                        setText(item);
+                    }
                 }
             }
         });

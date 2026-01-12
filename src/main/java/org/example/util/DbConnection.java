@@ -25,7 +25,7 @@ public class DbConnection {
                 System.err.println("[DbConnection] db.properties non trouvé, utilisation des valeurs par défaut");
                 URL = "jdbc:mysql://localhost:3306/bibliotheque?useSSL=false&serverTimezone=UTC";
                 USER = "root";
-                PASSWORD = "fatou";
+                PASSWORD = "francois12";
             }
         } catch (Exception e) {
             System.err.println("[DbConnection] Erreur lors du chargement de db.properties: " + e.getMessage());
