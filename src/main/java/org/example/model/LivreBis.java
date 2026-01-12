@@ -1,6 +1,6 @@
 package org.example.model;
 
-public class Livre {
+public class LivreBis {
     private int idLivre;
     private String titre;
     private String auteur;
@@ -9,9 +9,9 @@ public class Livre {
     private int quantiteDisponible;
 
     // Constructeurs
-    public Livre() {}
+    public LivreBis() {}
 
-    public Livre(int idLivre, String titre, String auteur, String isbn,
+    public LivreBis(int idLivre, String titre, String auteur, String isbn,
                  int quantiteTotale, int quantiteDisponible) {
         this.idLivre = idLivre;
         this.titre = titre;

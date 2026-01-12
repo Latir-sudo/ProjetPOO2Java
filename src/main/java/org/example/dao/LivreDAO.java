@@ -1,6 +1,6 @@
 package org.example.dao;
 
-import org.example.model.Livre;
+import org.example.model.LivreBis;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,8 +22,8 @@ import java.util.List;
             e.printStackTrace();
         }
     }
-     public List<Livre> getAllLivres() {
-         List<Livre> livres = new ArrayList<>();
+     public List<LivreBis> getAllLivres() {
+         List<LivreBis> livres = new ArrayList<>();
          String sql = "SELECT * FROM livres ORDER BY titre";
 
          try (Statement stmt = connection.createStatement();
@@ -41,7 +41,7 @@ import java.util.List;
      }
 
      // Récupérer un livre par son ID
-     public Livre getLivreById(int id) {
+     public LivreBis getLivreById(int id) {
          String sql = "SELECT * FROM livres WHERE id_livre = ?";
 
          try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -60,7 +60,7 @@ import java.util.List;
      }
 
      // Récupérer un livre par ISBN
-     public Livre getLivreByIsbn(String isbn) {
+     public LivreBis getLivreByIsbn(String isbn) {
          String sql = "SELECT * FROM livres WHERE isbn = ?";
 
          try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -79,8 +79,8 @@ import java.util.List;
      }
 
 
-     private Livre mapResultSetToLivre(ResultSet rs) throws SQLException {
-         Livre l = new Livre();
+     private LivreBis mapResultSetToLivre(ResultSet rs) throws SQLException {
+         LivreBis l = new LivreBis();
          l.setIdLivre(rs.getInt("id_livre"));           // id_livre
          l.setTitre(rs.getString("titre"));            // titre
          l.setAuteur(rs.getString("auteur"));          // auteur
