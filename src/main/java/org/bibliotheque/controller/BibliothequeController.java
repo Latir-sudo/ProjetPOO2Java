@@ -138,15 +138,15 @@ public class BibliothequeController implements Initializable {
                 lblNbLivres.setText(String.valueOf(stats.get("livres")));
             }
             if (lbLivresDisponibles != null && stats.containsKey("livres_disponibles")) {
-                lbLivresDisponibles.setText(String.valueOf(stats.get("livres_disponibles")));
+                lbLivresDisponibles.setText(String.valueOf(stats.get("livres_disponibles") + " quantité de livres disponibles"));
             }
 
             if (lbNbLivresARetouner != null && stats.containsKey("emprunts_en_cours")) {
                 lbNbLivresARetouner.setText(String.valueOf(stats.get("emprunts_en_cours")));
             }
 
-            if (lbPenalite!= null && stats.containsKey("penalite")) {
-                lbPenalite.setText(String.valueOf(stats.get("penalite")));
+            if (lbPenalite!= null && stats.containsKey("penalites")) {
+                lbPenalite.setText(String.valueOf(stats.get("penalites") + "€"));
             }
 
 
@@ -156,6 +156,10 @@ public class BibliothequeController implements Initializable {
 
             if (lbEtudiants != null && stats.containsKey("etudiants")) {
                 lbEtudiants.setText(String.valueOf(stats.get("etudiants")+" enseignants"));
+            }
+
+            if (lbNbLivresARetouner!= null && stats.containsKey("emprunts_en_cours")) {
+                lbNbLivresARetouner.setText(String.valueOf(stats.get("emprunts_en_cours")+" emprunts en cours"));
             }
 
             if (lblNbEmprunts != null && stats.containsKey("emprunts_en_cours")) {
