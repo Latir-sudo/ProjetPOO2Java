@@ -18,7 +18,7 @@ public class App extends Application {
             Parent root = loader.load();
             
             // Créer la scène
-            Scene scene = new Scene(root, 1400, 800);
+            Scene scene = new Scene(root);
             
             // Configurer la fenêtre
             primaryStage.setTitle("Bibliothèque UGB - Gestion");

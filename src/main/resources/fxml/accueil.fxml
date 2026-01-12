@@ -15,14 +15,14 @@
 <?import javafx.scene.shape.Circle?>
 
 <BorderPane style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
-    
+
     <!-- Barre latérale gauche -->
     <left>
         <VBox prefWidth="250" spacing="0" style="-fx-background-color: #C65D3B;">
             <padding>
                 <Insets bottom="20" left="0" right="0" top="20" />
             </padding>
-            
+
             <!-- En-tête avec logo -->
             <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 20;">
             <ImageView fitHeight="65.0" fitWidth="59.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
@@ -35,24 +35,24 @@
                     <Label style="-fx-text-fill: rgba(255,255,255,0.8); -fx-font-size: 11px;" text="Gestion Bibliothèque" />
                 </VBox>
             </HBox>
-            
+
             <Separator style="-fx-background-color: rgba(255,255,255,0.2);" />
-            
+
             <!-- Menu de navigation -->
             <VBox spacing="0" VBox.vgrow="ALWAYS">
                 <Button maxWidth="Infinity" style="-fx-background-color: rgba(0,0,0,0.1); -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-padding: 15 20; -fx-font-size: 13px; -fx-border-width: 0;" text="🏠  Tableau de bord" />
-                
+
                 <Button maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-padding: 15 20; -fx-font-size: 13px; -fx-border-width: 0;" text="👥  Utilisateurs" />
-                
+
                 <Button maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-padding: 15 20; -fx-font-size: 13px; -fx-border-width: 0;" text="📚  Livres" />
-                
+
                 <Button maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-padding: 15 20; -fx-font-size: 13px; -fx-border-width: 0;" text="📤  Emprunts" />
-                
+
                 <Button maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-padding: 15 20; -fx-font-size: 13px; -fx-border-width: 0;" text="📊  Statistiques" />
-                
+
                 <Button maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-padding: 15 20; -fx-font-size: 13px; -fx-border-width: 0;" text="⚙️  Règles Métier" />
             </VBox>
-            
+
             <!-- Pied de page avec administrateur -->
             <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 20; -fx-background-color: rgba(0,0,0,0.1);">
                 <Circle radius="20" style="-fx-fill: #333333;" />
@@ -63,20 +63,20 @@
             </HBox>
         </VBox>
     </left>
-    
+
     <!-- Contenu principal -->
     <center>
         <VBox spacing="20" style="-fx-background-color: #f5f5f5;">
             <padding>
                 <Insets bottom="30" left="40" right="40" top="30" />
             </padding>
-            
+
             <!-- En-tête -->
             <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="722.0" spacing="10" style="-fx-background-color: grey.shade200;">
                 <Label style="-fx-font-size: 24px;" text="🏠" />
                 <Label opacity="0.91" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Tableau de bord" />
             </HBox>
-            
+
             <!-- Cartes statistiques - Première ligne -->
             <HBox alignment="CENTER_LEFT" spacing="20">
                 <!-- Carte Utilisateurs -->
@@ -95,7 +95,7 @@
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #999999;" text="127 enseignants," />
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #999999;" text="215 étudiants" />
                 </VBox>
-                
+
                 <!-- Carte Livres -->
                 <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
                     <HBox alignment="CENTER_LEFT" spacing="15">
@@ -107,7 +107,7 @@
                     </HBox>
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #999999;" text="1,234 disponibles" />
                 </VBox>
-                
+
                 <!-- Carte Emprunts -->
                 <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
                     <HBox alignment="CENTER_LEFT" spacing="15">
@@ -120,7 +120,7 @@
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #999999;" text="14 à retourner cette semaine" />
                 </VBox>
             </HBox>
-            
+
             <!-- Carte Retards -->
             <HBox spacing="20">
                 <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
@@ -134,7 +134,7 @@
                     <Label style="-fx-font-size: 11px; -fx-text-fill: #999999;" text="Total pénalités: 35€" />
                 </VBox>
             </HBox>
-            
+
             <!-- Section Emprunts récents -->
             <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
                 <HBox alignment="CENTER_LEFT" spacing="20">
@@ -142,7 +142,7 @@
                     <Region HBox.hgrow="ALWAYS" />
                     <Button style="-fx-background-color: #C65D3B; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 10 20; -fx-font-weight: bold;" text="Nouvel emprunt" />
                 </HBox>
-                
+
                 <!-- Tableau des emprunts -->
                 <TableView prefHeight="300" style="-fx-background-color: FFFFFFF;">
                     <columns>
