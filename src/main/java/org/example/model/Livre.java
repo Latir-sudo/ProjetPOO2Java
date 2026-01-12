@@ -1,6 +1,5 @@
 package org.example.model;
 
-
 public class Livre {
     private int id;
     private String titre;
@@ -78,4 +77,11 @@ public class Livre {
         disponibles++;
 
     }
-}
+
+
+    public Livre(int id, String titre) {
+        this.id = id;
+        this.titre = titre;
+    }
+
+    }

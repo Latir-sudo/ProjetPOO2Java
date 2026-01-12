@@ -19,7 +19,7 @@
 
 .close:hover{
 
-    -fx-background-color:#ff3547;
+    -fx-background-color:#B55C2D;
  }
 
  .minimise {
@@ -101,10 +101,10 @@
    -fx-background-color:#1ABC9C;
  }
  .card-emprunt{
-  -fx-background-color:#F39C12;
+  -fx-background-color:#B55C2D;
  }
  .card-retard {
-   -fx-background-color:#E74C3C;
+   -fx-background-color:#B55C2D;
  }
 
  .button.btn-ajout {
@@ -123,6 +123,7 @@
      -fx-background-color: #B55C2D;
      -fx-text-fill: #fff;
 
+<<<<<<< HEAD
      }
 
  .btn-edit {
@@ -332,3 +333,40 @@ StackPane {
         -fx-pref-width: 250px;
     }
 }
+=======
+ }
+
+ /* TableView Header Styling */
+ .table-view .column-header-background {
+     -fx-background-color: #B55C2D;
+ }
+
+ .table-view .column-header {
+     -fx-background-color: #B55C2D;
+     -fx-text-fill: white;
+     -fx-font-weight: bold;
+     -fx-font-size: 12;
+     -fx-padding: 10;
+ }
+
+ .table-view .column-header .label {
+     -fx-text-fill: white;
+     -fx-font-weight: bold;
+ }
+
+ .table-view {
+     -fx-table-cell-border-color: #ddd;
+ }
+
+ .table-row-cell {
+     -fx-padding: 5;
+ }
+
+ .table-row-cell:hover {
+     -fx-background-color: #f0f0f0;
+ }
+
+ .enregistrer_couleur{
+     -fx-background-color: #B55C2D;
+ }
+>>>>>>> GestionEmprunt

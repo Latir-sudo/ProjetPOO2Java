@@ -26,5 +26,6 @@ public class SidebarController {
         btnGestionLivres.setOnAction(event -> mainController.setCenter("sample.fxml"));
         btnGestionEmprunts.setOnAction(event -> mainController.setCenter("emprunts.fxml"));
         btnStatistiques.setOnAction(event -> mainController.setCenter("graphique.fxml"));
+        btnGestionEmprunts.setOnAction(event -> mainController.setCenter("empruntFXML.fxml"));
     }
 }
