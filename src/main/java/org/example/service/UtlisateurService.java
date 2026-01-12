@@ -2,7 +2,6 @@ package org.example.service;
 
 import org.example.model.Utilisateur;
 import org.example.util.DbConnection;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

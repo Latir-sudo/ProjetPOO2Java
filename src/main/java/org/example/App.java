@@ -11,6 +11,7 @@ public class App extends Application {
     private static Stage primaryStage; // la fenêtre principale de l'application
 
     @Override
+
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
 
@@ -36,6 +37,7 @@ public class App extends Application {
         primaryStage.setTitle("Gestion des Utilisateurs");
         primaryStage.setMaximized(true); // plein écran .
         primaryStage.show();
+
     }
 
     public static void main(String[] args) {

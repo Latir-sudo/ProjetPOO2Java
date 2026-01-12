@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.controller.LivreController"
+            stylesheets="@../css/style.css">
+
+    <!-- ================= HEADER ================= -->
+    <top>
+        <HBox spacing="10"
+              alignment="CENTER_LEFT"
+              prefHeight="60"
+              styleClass="header">
+
+            <children>
+                <ImageView fitHeight="28" fitWidth="28" preserveRatio="true">
+                    <image>
+                        <Image url="@/org/example/images/livre.png"/>
+                    </image>
+                </ImageView>
+
+                <Label text="Gestion des livres" styleClass="page-title">
+                    <font>
+                        <Font size="24"/>
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+    </top>
+
+    <!-- ================= CONTENU ================= -->
+    <center>
+        <VBox spacing="15" styleClass="content">
+
+            <!-- Barre actions -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+
+                <StackPane>
+                    <TextField fx:id="txtRecherche"
+                               promptText="Rechercher par titre, auteur ou ISBN..."
+                               styleClass="recherche"
+                               onKeyReleased="#Rechercher"
+                               prefHeight="36"/>
+
+                    <!-- Icône recherche : padding géré par CSS -->
+                    <Label text="🔍"
+                           styleClass="icon_recherche"
+                           mouseTransparent="true"
+                           StackPane.alignment="CENTER_LEFT"/>
+                </StackPane>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Button text="Ajouter un livre"
+                        prefHeight="36"
+                        prefWidth="170"
+                        styleClass="btn-primary"
+                        onAction="#Ajouter"/>
+            </HBox>
+
+            <!-- Table responsive -->
+            <TableView fx:id="livresTable"
+                       styleClass="table-livres"
+                       VBox.vgrow="ALWAYS">
+
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" prefWidth="60"/>
+                    <TableColumn fx:id="titreColumn" text="Titre" prefWidth="180"/>
+                    <TableColumn fx:id="auteurColumn" text="Auteur" prefWidth="140"/>
+                    <TableColumn fx:id="isbnColumn" text="ISBN" prefWidth="130"/>
+                    <TableColumn fx:id="quantiteColumn" text="Quantité" prefWidth="90"/>
+                    <TableColumn fx:id="disponiblesColumn" text="Disponibles" prefWidth="90"/>
+                    <TableColumn fx:id="actionColumn" text="Actions" prefWidth="120"/>
+                </columns>
+
+            </TableView>
+
+        </VBox>
+    </center>
+
+</BorderPane>
