@@ -106,7 +106,8 @@
                             <Label style="-fx-font-size: 12px; -fx-text-fill: #666666;" text="Utilisateurs" />
                         </VBox>
                     </HBox>
-                    <Label style="-fx-font-size: 10px; -fx-text-fill: #999999;" text="127 enseignants, 215 étudiants" />
+                    <Label fx:id="lbNbEnseignants" style="-fx-font-size: 10px; -fx-text-fill: #999999;" text="127 enseignants" />
+                    <Label fx:id="lbEtudiants" style="-fx-font-size: 10px; -fx-text-fill: #999999;" text="127 etudiants" />
                 </VBox>
 
                 <!-- Carte Livres -->
@@ -118,7 +119,7 @@
                             <Label style="-fx-font-size: 12px; -fx-text-fill: #666666;" text="Livres" />
                         </VBox>
                     </HBox>
-                    <Label style="-fx-font-size: 10px; -fx-text-fill: #999999;" text="1,150 disponibles" />
+                    <Label fx:id="lbLivresDisponibles" style="-fx-font-size: 10px; -fx-text-fill: #999999;" text="1,150 disponibles" />
                 </VBox>
 
                 <!-- Carte Emprunts -->
@@ -130,7 +131,7 @@
                             <Label style="-fx-font-size: 12px; -fx-text-fill: #666666;" text="Emprunts en cours" />
                         </VBox>
                     </HBox>
-                    <Label style="-fx-font-size: 10px; -fx-text-fill: #999999;" text="14 à retourner cette semaine" />
+                    <Label fx:id="lbNbLivresARetouner" style="-fx-font-size: 10px; -fx-text-fill: #999999;" text="14 à retourner cette semaine" />
                 </VBox>
 
                 <!-- Carte Retards -->
@@ -142,7 +143,7 @@
                             <Label style="-fx-font-size: 12px; -fx-text-fill: #666666;" text="Retards" />
                         </VBox>
                     </HBox>
-                    <Label style="-fx-font-size: 10px; -fx-text-fill: #999999;" text="Total pénalités: 35€" />
+                    <Label fx:id="lbPenalite" style="-fx-font-size: 10px; -fx-text-fill: #999999;" text="Total pénalités: 35€" />
                 </VBox>
             </HBox>
 

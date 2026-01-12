@@ -28,7 +28,11 @@ public class BibliothequeController implements Initializable {
     @FXML private Label lblNbLivres;
     @FXML private Label lblNbEmprunts;
     @FXML private Label lblNbRetards;
-
+    @FXML private Label lbNbEnseignants;
+    @FXML private Label lbEtudiants;
+    @FXML private Label lbLivresDisponibles;
+    @FXML private Label lbNbLivresARetouner;
+    @FXML private Label lbPenalite;
     @FXML private TableView<Emprunt> tableEmprunts;
     @FXML private TableColumn<Emprunt, String> colUtilisateur;
     @FXML private TableColumn<Emprunt, String> colLivre;
@@ -133,6 +137,27 @@ public class BibliothequeController implements Initializable {
             if (lblNbLivres != null && stats.containsKey("livres")) {
                 lblNbLivres.setText(String.valueOf(stats.get("livres")));
             }
+            if (lbLivresDisponibles != null && stats.containsKey("livres_disponibles")) {
+                lbLivresDisponibles.setText(String.valueOf(stats.get("livres_disponibles")));
+            }
+
+            if (lbNbLivresARetouner != null && stats.containsKey("emprunts_en_cours")) {
+                lbNbLivresARetouner.setText(String.valueOf(stats.get("emprunts_en_cours")));
+            }
+
+            if (lbPenalite!= null && stats.containsKey("penalite")) {
+                lbPenalite.setText(String.valueOf(stats.get("penalite")));
+            }
+
+
+            if (lbNbEnseignants != null && stats.containsKey("enseignants")) {
+                lbNbEnseignants.setText(String.valueOf(stats.get("enseignants")+" enseignants"));
+            }
+
+            if (lbEtudiants != null && stats.containsKey("etudiants")) {
+                lbEtudiants.setText(String.valueOf(stats.get("etudiants")+" enseignants"));
+            }
+
             if (lblNbEmprunts != null && stats.containsKey("emprunts_en_cours")) {
                 lblNbEmprunts.setText(String.valueOf(stats.get("emprunts_en_cours")));
             }
