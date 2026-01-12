@@ -9,7 +9,7 @@ public class Livre {
     private int quantiteTotale;
     private int disponibles;
 
-    
+
     
     public Livre() {}
     
@@ -21,8 +21,8 @@ public class Livre {
         this.disponibles = disponibles;
 
     }
-    
-    public Livre(int id, String titre, String auteur, String isbn, int quantiteTotale, int disponibles, String statut) {
+
+    public Livre(int id, String titre, String auteur, String isbn, int quantiteTotale, int disponibles) {
         this.id = id;
         this.titre = titre;
         this.auteur = auteur;
@@ -76,6 +76,6 @@ public class Livre {
     
     public void retourner() {
         disponibles++;
-        
+
     }
 }
