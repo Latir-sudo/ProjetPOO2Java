@@ -65,7 +65,7 @@ public class StatistiqueService {
                 String type = rs.getString("type_utilisateur");
                 int count = rs.getInt("nb_utilisateur");
 
-                String label = type.equals("ETUDIANT") ? "Étudiants" : "Enseignants";
+                String label = type.equals("ETUDIANT") ? "Etudiants" : "Enseignats";
                 pieData.add(new PieChart.Data(label + " (" + count + ")", count));
             }
 
