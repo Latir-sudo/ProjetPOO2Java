@@ -9,7 +9,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Emprunt {
+public class EmpruntBis {
     private final IntegerProperty id;
     private final StringProperty utilisateur;
     private final StringProperty matricule;
@@ -20,9 +20,9 @@ public class Emprunt {
     private final StringProperty penalite;
     private final StringProperty statut;
 
-    public Emprunt(int id, String utilisateur, String matricule, String livre, 
-                   LocalDate dateEmprunt, LocalDate retourPrevu, LocalDate retourEffectif, 
-                   String penalite, String statut) {
+    public EmpruntBis(int id, String utilisateur, String matricule, String livre,
+                      LocalDate dateEmprunt, LocalDate retourPrevu, LocalDate retourEffectif,
+                      String penalite, String statut) {
         this.id = new SimpleIntegerProperty(id);
         this.utilisateur = new SimpleStringProperty(utilisateur);
         this.matricule = new SimpleStringProperty(matricule);

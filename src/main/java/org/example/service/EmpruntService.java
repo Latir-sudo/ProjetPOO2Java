@@ -9,15 +9,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.example.model.Emprunt;
+import org.example.model.EmpruntBis;
 import org.example.model.Livre;
 import org.example.model.Utilisateur;
 import org.example.util.DbConnection;
 
 public class EmpruntService {
 
-    public List<Emprunt> obtenirTousLesEmprunts() {
-        List<Emprunt> emprunts = new ArrayList<>();
+    public List<EmpruntBis> obtenirTousLesEmprunts() {
+        List<EmpruntBis> emprunts = new ArrayList<>();
         String query = "SELECT e.id_emprunt, CONCAT(u.nom, ' ', u.prenom) as utilisateur, u.matricule, l.titre, " +
                       "e.date_emprunt, e.date_retour_prevue, e.date_retour_effective, e.penalite, " +
                       "CASE WHEN e.date_retour_effective IS NULL THEN 'En cours' ELSE 'Retourné' END as statut " +
@@ -36,7 +36,7 @@ public class EmpruntService {
              ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
-                Emprunt emprunt = new Emprunt(
+                EmpruntBis emprunt = new EmpruntBis(
                     rs.getInt("id_emprunt"),
                     rs.getString("utilisateur"),
                     rs.getString("matricule"),
@@ -61,8 +61,8 @@ public class EmpruntService {
         return emprunts;
     }
 
-    public List<Emprunt> rechercherEmprunts(String terme) {
-        List<Emprunt> emprunts = new ArrayList<>();
+    public List<EmpruntBis> rechercherEmprunts(String terme) {
+        List<EmpruntBis> emprunts = new ArrayList<>();
         String query = "SELECT e.id_emprunt, CONCAT(u.nom, ' ', u.prenom) as utilisateur, u.matricule, l.titre, " +
                       "e.date_emprunt, e.date_retour_prevue, e.date_retour_effective, e.penalite, " +
                       "CASE WHEN e.date_retour_effective IS NULL THEN 'En cours' ELSE 'Retourné' END as statut " +
@@ -89,7 +89,7 @@ public class EmpruntService {
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    Emprunt emprunt = new Emprunt(
+                    EmpruntBis emprunt = new EmpruntBis(
                         rs.getInt("id_emprunt"),
                         rs.getString("utilisateur"),
                         rs.getString("matricule"),
@@ -200,7 +200,7 @@ public class EmpruntService {
         }
     }
 
-    public Emprunt obtenirEmpruntParId(int id) {
+    public EmpruntBis obtenirEmpruntParId(int id) {
         String query = "SELECT e.id_emprunt, CONCAT(u.nom, ' ', u.prenom) as utilisateur, u.matricule, l.titre, " +
                       "e.date_emprunt, e.date_retour_prevue, e.date_retour_effective, e.penalite, " +
                       "CASE WHEN e.date_retour_effective IS NULL THEN 'En cours' ELSE 'Retourné' END as statut " +
@@ -220,7 +220,7 @@ public class EmpruntService {
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    return new Emprunt(
+                    return new EmpruntBis(
                         rs.getInt("id_emprunt"),
                         rs.getString("utilisateur"),
                         rs.getString("matricule"),

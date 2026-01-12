@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import org.example.model.Emprunt;
+import org.example.model.EmpruntBis;
 import org.example.model.Livre;
 import org.example.model.Utilisateur;
 import org.example.service.EmpruntService;
@@ -40,34 +40,34 @@ public class EmpruntController {
     private Button returnEmpruntBtn;
 
     @FXML
-    private TableView<Emprunt> empruntTable;
+    private TableView<EmpruntBis> empruntTable;
 
     @FXML
-    private TableColumn<Emprunt, Integer> idColumn;
+    private TableColumn<EmpruntBis, Integer> idColumn;
 
     @FXML
-    private TableColumn<Emprunt, String> utilisateurColumn;
+    private TableColumn<EmpruntBis, String> utilisateurColumn;
 
     @FXML
-    private TableColumn<Emprunt, String> livreColumn;
+    private TableColumn<EmpruntBis, String> livreColumn;
 
     @FXML
-    private TableColumn<Emprunt, LocalDate> dateEmpruntColumn;
+    private TableColumn<EmpruntBis, LocalDate> dateEmpruntColumn;
 
     @FXML
-    private TableColumn<Emprunt, LocalDate> retourPrevuColumn;
+    private TableColumn<EmpruntBis, LocalDate> retourPrevuColumn;
 
     @FXML
-    private TableColumn<Emprunt, LocalDate> retourEffectifColumn;
+    private TableColumn<EmpruntBis, LocalDate> retourEffectifColumn;
 
     @FXML
-    private TableColumn<Emprunt, String> penaliteColumn;
+    private TableColumn<EmpruntBis, String> penaliteColumn;
 
     @FXML
-    private TableColumn<Emprunt, String> statutColumn;
+    private TableColumn<EmpruntBis, String> statutColumn;
 
     @FXML
-    private TableColumn<Emprunt, Void> actionsColumn;
+    private TableColumn<EmpruntBis, Void> actionsColumn;
 
     private final EmpruntService empruntService = new EmpruntService();
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -91,7 +91,7 @@ public class EmpruntController {
         livreColumn.setCellValueFactory(new PropertyValueFactory<>("livre"));
 
         dateEmpruntColumn.setCellValueFactory(new PropertyValueFactory<>("dateEmprunt"));
-        dateEmpruntColumn.setCellFactory(column -> new TableCell<Emprunt, LocalDate>() {
+        dateEmpruntColumn.setCellFactory(column -> new TableCell<EmpruntBis, LocalDate>() {
             @Override
             protected void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
@@ -100,7 +100,7 @@ public class EmpruntController {
         });
 
         retourPrevuColumn.setCellValueFactory(new PropertyValueFactory<>("retourPrevu"));
-        retourPrevuColumn.setCellFactory(column -> new TableCell<Emprunt, LocalDate>() {
+        retourPrevuColumn.setCellFactory(column -> new TableCell<EmpruntBis, LocalDate>() {
             @Override
             protected void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
@@ -108,7 +108,7 @@ public class EmpruntController {
             }
         });
 
-        retourEffectifColumn.setCellFactory(column -> new TableCell<Emprunt, LocalDate>() {
+        retourEffectifColumn.setCellFactory(column -> new TableCell<EmpruntBis, LocalDate>() {
             @Override
             protected void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
@@ -118,14 +118,14 @@ public class EmpruntController {
                 } else {
                     // Vérifier d'abord si l'index est valide
                     int index = getIndex();
-                    TableView<Emprunt> tableView = getTableView();
+                    TableView<EmpruntBis> tableView = getTableView();
 
                     if (tableView == null || index < 0 || index >= tableView.getItems().size()) {
                         setText("");
                         return;
                     }
 
-                    Emprunt emprunt = tableView.getItems().get(index);
+                    EmpruntBis emprunt = tableView.getItems().get(index);
                     if (emprunt == null || emprunt.getId() == 0) {
                         setText("");
                     } else if (item == null) {
@@ -137,7 +137,7 @@ public class EmpruntController {
             }
         });
 
-        penaliteColumn.setCellFactory(column -> new TableCell<Emprunt, String>() {
+        penaliteColumn.setCellFactory(column -> new TableCell<EmpruntBis, String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -147,14 +147,14 @@ public class EmpruntController {
                 } else {
                     // Vérifier d'abord si l'index est valide
                     int index = getIndex();
-                    TableView<Emprunt> tableView = getTableView();
+                    TableView<EmpruntBis> tableView = getTableView();
 
                     if (tableView == null || index < 0 || index >= tableView.getItems().size()) {
                         setText("");
                         return;
                     }
 
-                    Emprunt emprunt = tableView.getItems().get(index);
+                    EmpruntBis emprunt = tableView.getItems().get(index);
                     if (emprunt == null || emprunt.getId() == 0) {
                         setText("");
                     } else if (item == null || item.equals("0") || item.trim().isEmpty()) {
@@ -167,7 +167,7 @@ public class EmpruntController {
         });
 
         statutColumn.setCellValueFactory(new PropertyValueFactory<>("statut"));
-        statutColumn.setCellFactory(column -> new TableCell<Emprunt, String>() {
+        statutColumn.setCellFactory(column -> new TableCell<EmpruntBis, String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -191,7 +191,7 @@ public class EmpruntController {
     }
 
     private void setupActionsColumn() {
-        actionsColumn.setCellFactory(param -> new TableCell<Emprunt, Void>() {
+        actionsColumn.setCellFactory(param -> new TableCell<EmpruntBis, Void>() {
             private final Button detailBtn = new Button();
 
             {
@@ -224,9 +224,9 @@ public class EmpruntController {
                 detailBtn.setOnAction(event -> {
                     int idx = getIndex();
                     if (idx < 0) return;
-                    TableView<Emprunt> tv = getTableView();
+                    TableView<EmpruntBis> tv = getTableView();
                     if (tv == null || idx >= tv.getItems().size()) return;
-                    Emprunt emprunt = tv.getItems().get(idx);
+                    EmpruntBis emprunt = tv.getItems().get(idx);
                     if (emprunt != null) {
                         showEmpruntDetails(emprunt);
                     }
@@ -240,7 +240,7 @@ public class EmpruntController {
                     setGraphic(null);
                 } else {
                     int idx = getIndex();
-                    TableView<Emprunt> tv = getTableView();
+                    TableView<EmpruntBis> tv = getTableView();
                     if (tv != null && idx >= 0 && idx < tv.getItems().size()) {
                         setGraphic(detailBtn);
                     } else {
@@ -267,18 +267,18 @@ public class EmpruntController {
     }
 
     private void loadEmprunts() {
-        List<Emprunt> emprunts = empruntService.obtenirTousLesEmprunts();
-        ObservableList<Emprunt> observableEmprunts = FXCollections.observableArrayList(emprunts);
+        List<EmpruntBis> emprunts = empruntService.obtenirTousLesEmprunts();
+        ObservableList<EmpruntBis> observableEmprunts = FXCollections.observableArrayList(emprunts);
         empruntTable.setItems(observableEmprunts);
     }
 
     private void searchEmprunts(String terme) {
-        List<Emprunt> emprunts = empruntService.rechercherEmprunts(terme);
-        ObservableList<Emprunt> observableEmprunts = FXCollections.observableArrayList(emprunts);
+        List<EmpruntBis> emprunts = empruntService.rechercherEmprunts(terme);
+        ObservableList<EmpruntBis> observableEmprunts = FXCollections.observableArrayList(emprunts);
         empruntTable.setItems(observableEmprunts);
     }
 
-    private void showEmpruntDetails(Emprunt emprunt) {
+    private void showEmpruntDetails(EmpruntBis emprunt) {
         javafx.scene.control.Dialog<Boolean> dialog = new javafx.scene.control.Dialog<>();
         dialog.setTitle("Modifier Emprunt");
         dialog.setHeaderText("Modification de l'Emprunt #" + emprunt.getId());
@@ -447,7 +447,7 @@ public class EmpruntController {
     }
 
     private void openReturnEmpruntDialog() {
-        Emprunt selectedEmprunt = empruntTable.getSelectionModel().getSelectedItem();
+        EmpruntBis selectedEmprunt = empruntTable.getSelectionModel().getSelectedItem();
         if (selectedEmprunt == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Attention");
