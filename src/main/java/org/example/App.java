@@ -21,7 +21,7 @@ public class App extends Application {
     }
 
     public static void loadLoginInterface() throws Exception {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("/org/example/view/main.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/org/example/view/authentification.fxml"));
         Scene scene = new Scene(loader.load(),800,600);
         scene.getStylesheets().add(App.class.getResource("/org/example/css/Utilisateur.css").toExternalForm());
         primaryStage.setScene(scene);

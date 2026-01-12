@@ -48,8 +48,18 @@ public class UtilisateurController {
 
     @FXML
     public void initialize() {
+
+        tableau.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tableau.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                tableau.prefWidthProperty().bind(
+                        newScene.widthProperty().multiply(0.75)
+                );
+            }
+        });
+// garder la largeur exacte
         // Liaison colonnes → propriétés du modèle
-        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        id.setCellValueFactory(new PropertyValueFactory<>("idUtilisateur"));
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         matricule.setCellValueFactory(new PropertyValueFactory<>("matricule"));
