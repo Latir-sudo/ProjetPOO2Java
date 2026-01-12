@@ -32,7 +32,7 @@ public class MainController {
         btnEmprunts.setOnAction(event -> loadPage("emprunts"));
         btnLivres.setOnAction(event -> loadPage("livres"));
 
-        // Charger la page utilisateurs par défaut
+        
         loadPage("utilisateurs");
     }
 
@@ -53,7 +53,7 @@ public class MainController {
             contentPane.getChildren().clear();
             contentPane.getChildren().add(node);
 
-            // Mettre à jour le style des boutons
+           
             updateButtonStyles(page);
 
             System.out.println("[MainController] ✓ Page " + page + " chargée avec succès");

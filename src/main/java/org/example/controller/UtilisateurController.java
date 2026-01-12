@@ -41,14 +41,14 @@ public class UtilisateurController {
     public void initialize() {
         System.out.println("[UtilisateurController] Initialisation du contrôleur");
         
-        // Vérifier que la TableView est injectée
+        
         if (tableau == null) {
             System.err.println("[UtilisateurController] ERREUR: TableView 'tableau' n'est pas injectée!");
         } else {
             System.out.println("[UtilisateurController] TableView 'tableau' injectée avec succès");
         }
         
-        // Liaison colonnes → propriétés du modèle
+        
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
@@ -78,7 +78,6 @@ public class UtilisateurController {
             private final HBox pane = new HBox(5, btnModifier, btnSupprimer);
 
             {
-                // Bouton Modifier
                 
                 
               

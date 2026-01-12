@@ -164,8 +164,8 @@ public class EmpruntController {
 
             {
                 try {
-                    // Try to load PNG image from resources
-                    java.io.InputStream imageStream = getClass().getResourceAsStream("/images/details.png");
+                    
+                    java.io.InputStream imageStream = getClass().getResourceAsStream("/image/gestionEmprunt.png");
                     if (imageStream != null) {
                         ImageView imageView = new ImageView(new Image(imageStream));
                         imageView.setFitWidth(16);
@@ -173,11 +173,11 @@ public class EmpruntController {
                         imageView.setPreserveRatio(true);
                         detailBtn.setGraphic(imageView);
                     } else {
-                        // Fallback: use emoji if image not found
+                        
                         detailBtn.setText("👁");
                     }
                 } catch (Exception e) {
-                    // Fallback to emoji if image loading fails
+                   
                     detailBtn.setText("👁");
                 }
 
@@ -254,7 +254,7 @@ public class EmpruntController {
         ButtonType saveButtonType = new ButtonType("Enregistrer", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
 
-        // Read-only fields
+       
         TextField utilisateurField = new TextField(emprunt.getUtilisateur());
         utilisateurField.setEditable(false);
         TextField matriculeField = new TextField(emprunt.getMatricule());
@@ -262,15 +262,15 @@ public class EmpruntController {
         TextField livreField = new TextField(emprunt.getLivre());
         livreField.setEditable(false);
 
-        // Editable date fields
+       
         javafx.scene.control.DatePicker dateEmpruntPicker = new javafx.scene.control.DatePicker(emprunt.getDateEmprunt());
         javafx.scene.control.DatePicker retourPrevuPicker = new javafx.scene.control.DatePicker(emprunt.getRetourPrevu());
         javafx.scene.control.DatePicker retourEffectifPicker = new javafx.scene.control.DatePicker(emprunt.getRetourEffectif());
 
-        // Editable penalty field
+     
         TextField penaliteField = new TextField(emprunt.getPenalite() == null || emprunt.getPenalite().equals("0") ? "" : emprunt.getPenalite());
         
-        // Status (read-only)
+   
         TextField statutField = new TextField(emprunt.getStatut());
         statutField.setEditable(false);
 
@@ -300,7 +300,7 @@ public class EmpruntController {
 
         java.util.Optional<Boolean> result = dialog.showAndWait();
         if (result.isPresent() && result.get()) {
-            // Save modifications
+           
             String penalite = penaliteField.getText().trim().isEmpty() ? "0" : penaliteField.getText().trim();
             boolean success = empruntService.mettreAJourEmprunt(
                 emprunt.getId(),
