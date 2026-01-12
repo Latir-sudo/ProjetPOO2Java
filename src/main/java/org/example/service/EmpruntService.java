@@ -44,7 +44,7 @@ public class EmpruntService {
                     rs.getObject("date_emprunt", LocalDate.class),
                     rs.getObject("date_retour_prevue", LocalDate.class),
                     rs.getObject("date_retour_effective", LocalDate.class),
-                    rs.getString("penalite") != null ? rs.getString("penalite") : "0",
+                    rs.getString("penalite"),
                     rs.getString("statut")
                 );
                 emprunts.add(emprunt);

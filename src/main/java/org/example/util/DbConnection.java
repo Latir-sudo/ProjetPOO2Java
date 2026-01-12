@@ -19,7 +19,7 @@ public class DbConnection {
                 props.load(input);
                 URL = props.getProperty("db.url", "jdbc:mysql://localhost:3306/bibliotheque?useSSL=false&serverTimezone=UTC");
                 USER = props.getProperty("db.user", "root");
-                PASSWORD = props.getProperty("db.password", "fatou");
+                PASSWORD = props.getProperty("db.password", "francois12");
                 System.out.println("[DbConnection] Configuration chargée depuis db.properties");
             } else {
                 System.err.println("[DbConnection] db.properties non trouvé, utilisation des valeurs par défaut");
@@ -31,7 +31,7 @@ public class DbConnection {
             System.err.println("[DbConnection] Erreur lors du chargement de db.properties: " + e.getMessage());
             URL = "jdbc:mysql://localhost:3306/bibliotheque?useSSL=false&serverTimezone=UTC";
             USER = "root";
-            PASSWORD = "fatou";
+            PASSWORD = "francois12";
         }
     }
 
