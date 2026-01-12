@@ -11,15 +11,12 @@ public class App extends Application {
     private static Stage primaryStage; // la fenêtre principale de l'application
 
     @Override
-<<<<<<< HEAD
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/view/user.fxml")));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-=======
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
->>>>>>> 9d6977bf0e281595daeaf6a48ca68abb66c1d8d6
 
         loadLoginInterface(); // on affiche d'abords l'interface de connexion
 
@@ -48,4 +45,6 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-}
+  }
+
+} 

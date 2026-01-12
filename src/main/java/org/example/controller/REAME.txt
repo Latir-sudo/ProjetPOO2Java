@@ -1,0 +1,79 @@
+=======================================================================================
+Projet POO2 Java – Bibliothèque
+Université Gaston Berger
+Année universitaire : 2024-2025
+Developper par :
+Fatou Badji                     P321560     Etudiant L3 INFO/SI 
+Francois Latir Diouf            P32658      Etudiant L3 INFO/SI 
+Serigne Abdou Ndiaye            P331133     Etudiant L3 INFO/SI 
+
+
+                             I. DESCRIPTION DU PROJET
+
+Ce projet est une application de gestion d'une bibliothèque permettant :
+    - La gestion des utilisateurs (étudiants et enseignants)
+    - La gestion des livres
+    - La gestion des emprunts et retours
+    - Le calcul des pénalités pour les retards
+    - La representation en graphe des livres les plus empruntes
+
+L'application est développée en Java avec JavaFX pour l'interface graphique et une base de données MySQL.
+
+
+
+                             II. TRUCTURE DU PROJET
+
+Le projet contient les dossiers et fichiers suivants :
+
+           - src/                  : code source Java
+           - src/main/java         : fichiers controller, service, model ,utilitaire
+           - src/main/resources/   : fichiers CSS, image, FXML
+           - scripts/              : scripts SQL de création et d’insertion
+           - README.txt            : ce fichier
+
+
+
+
+                                III. INSTALLATION
+
+     1. Installer JDK 17 ou supérieur
+     2. Installer MySQL et créer la base de données `bibliotheque`
+     3. Exécuter les scripts SQL dans l'ordre :
+           - create_tables.sql   : création des tables
+           - insert_data.sql     : insertion des données initiales
+     4. Importer le projet dans un IDE compatible Java (IntelliJ, Eclipse ou VS Code)
+     5. Configurer la connexion à la base dans `db.properties` (chemin : src/main/java/utilitaire)
+     6. Lancer l'application via la classe principale `App.java`
+
+
+
+
+                                IV. UTILISATION
+
+    - Connexion : interface d'accueil
+    - Gestion des utilisateurs : ajouter, modifier, supprimer, rechercher
+    - Gestion des livres** : ajouter, modifier, supprimer, rechercher
+    - Gestion des emprunts : effectuer un emprunt, retour, liste des retards
+    - Pénalités : calcul automatique selon le nombre de jours de retard
+
+                         V. REGLES METIER
+
+    1. Étudiant : maximum 3 emprunts simultanés
+    2. Enseignant : maximum 5 emprunts simultanés
+    3. Durée d’un emprunt : 14 jours
+    4. Pénalité : 1 e par jour de retard
+    5. Un livre indisponible ne peut pas être emprunté
+    6. Les identifiants (ISBN, matricule) sont uniques
+
+
+                        VI. DEMONSTRATION VIDEO
+
+Une vidéo de démonstration est disponible dans le dossier `video` (format MP4) 
+
+La vidéo montre :
+- Le lancement de l’application
+- La navigation entre les interfaces
+- Les principales fonctionnalités : utilisateurs, livres, emprunts
+
+
+
