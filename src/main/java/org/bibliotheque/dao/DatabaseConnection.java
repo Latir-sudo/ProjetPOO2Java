@@ -34,7 +34,7 @@ public class DatabaseConnection {
             
             String host = props.getProperty("db.host", "localhost");
             String port = props.getProperty("db.port", "3306");
-            String dbName = props.getProperty("db.name", "bibliot");
+            String dbName = props.getProperty("db.name", "bibliotheque");
             
             this.url = String.format(
                 "jdbc:mysql://%s:%s/%s?useSSL=false&serverTimezone=UTC",
