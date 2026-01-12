@@ -142,6 +142,37 @@ public class UtlisateurService {
 
     }
 
+
+
+    public Utilisateur getUserById(int id) {
+        String sql = "select * from utilisateurs where id_utilisateur = ?";
+        Utilisateur user = null;
+        try (
+                Connection con = DbConnection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql);
+        ) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                user = new Utilisateur(
+                        rs.getInt("id_utilisateur"),
+                        rs.getString("nom"),
+                        rs.getString("prenom"),
+                        rs.getString("matricule"),
+                        rs.getString("type_utilisateur")
+                );
+
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+
+    }
+
+
     // fonction update pour la mise à jour de l'utilisateur
 
    public boolean updateUser(Utilisateur user) {
