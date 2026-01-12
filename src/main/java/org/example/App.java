@@ -22,7 +22,7 @@ public class App extends Application {
         System.out.println("Chargement de l'interface de connexion...");
         FXMLLoader loader = new FXMLLoader(App.class.getResource("/org/example/view/graphique.fxml"));
         Scene scene = new Scene(loader.load(), 800, 600);
-        scene.getStylesheets().add(App.class.getResource("/org/example/css/Utilisateur.css").toExternalForm());
+        scene.getStylesheets().add(App.class.getResource("/org/example/css/statistique.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
         primaryStage.show();
@@ -31,9 +31,9 @@ public class App extends Application {
     // méthode pour charger l'interface principale
     public static void loadMainInterface() throws Exception {
         System.out.println("Chargement de l'interface principale...");
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("/org/example/view/user.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/org/example/view/graphique.fxml"));
         Scene scene = new Scene(loader.load(), 1000, 800);
-        scene.getStylesheets().add(App.class.getResource("/org/example/css/Utilisateur.css").toExternalForm());
+        scene.getStylesheets().add(App.class.getResource("/org/example/css/statistique.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setTitle("Gestion des Utilisateurs");
         primaryStage.setMaximized(true); // plein écran
