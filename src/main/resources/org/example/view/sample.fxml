@@ -1,75 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.TextField?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LivreController">
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.controller.LivreController"
+            stylesheets="@../css/style.css">
 
-    <children>
+    <!-- ================= HEADER ================= -->
+    <top>
+        <HBox spacing="10"
+              alignment="CENTER_LEFT"
+              prefHeight="60"
+              styleClass="header">
 
-        <HBox alignment="CENTER_LEFT" layoutX="14.0" prefHeight="56.0" prefWidth="891.0" spacing="10">
+            <children>
+                <ImageView fitHeight="28" fitWidth="28" preserveRatio="true">
+                    <image>
+                        <Image url="@/org/example/images/livre.png"/>
+                    </image>
+                </ImageView>
 
-
-        <ImageView fitHeight="28" fitWidth="28" preserveRatio="true">
-            <image>
-                <Image url="@/org/example/images/livre.png" />
-            </image>
-        </ImageView>
-
-
-
-            <Label styleClass="page-title" text="Gestion des livres">
-                <font>
-                    <Font name="System Bold" size="24" />
-                </font>
-            </Label>
-
+                <Label text="Gestion des livres" styleClass="page-title">
+                    <font>
+                        <Font size="24"/>
+                    </font>
+                </Label>
+            </children>
         </HBox>
+    </top>
 
-        <Button layoutX="720.0" layoutY="78.0" onAction="#Ajouter" prefHeight="36" prefWidth="170" styleClass="btn-primary" text="Ajouter un livre" />
+    <!-- ================= CONTENU ================= -->
+    <center>
+        <VBox spacing="15" styleClass="content">
 
-    
-        <TextField
-        fx:id="txtRecherche"
-        layoutX="10"
-        layoutY="70"
-        prefHeight="36"
-        prefWidth="280"
-        promptText="Rechercher par titre, auteur ou ISBN..."
-        styleClass="recherche"
-        onKeyReleased="#Rechercher"/>
+            <!-- Barre actions -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
 
+                <StackPane>
+                    <TextField fx:id="txtRecherche"
+                               promptText="Rechercher par titre, auteur ou ISBN..."
+                               styleClass="recherche"
+                               onKeyReleased="#Rechercher"
+                               prefHeight="36"/>
 
-        <Label
-        layoutX="18"
-        layoutY="78"
-        text="🔍"
-        mouseTransparent="true"
-        styleClass="icon_recherche"/>
+                    <!-- Icône recherche : padding géré par CSS -->
+                    <Label text="🔍"
+                           styleClass="icon_recherche"
+                           mouseTransparent="true"
+                           StackPane.alignment="CENTER_LEFT"/>
+                </StackPane>
 
+                <Region HBox.hgrow="ALWAYS"/>
 
-        <TableView fx:id="livresTable" layoutX="10" layoutY="120" prefHeight="450" prefWidth="880" styleClass="table-livres">
+                <Button text="Ajouter un livre"
+                        prefHeight="36"
+                        prefWidth="170"
+                        styleClass="btn-primary"
+                        onAction="#Ajouter"/>
+            </HBox>
 
-            <columns>
-                <TableColumn fx:id="idColumn" prefWidth="60" text="ID" />
-                <TableColumn fx:id="titreColumn" prefWidth="180" text="Titre" />
-                <TableColumn fx:id="auteurColumn" prefWidth="140" text="Auteur" />
-                <TableColumn fx:id="isbnColumn" prefWidth="130" text="ISBN" />
-                <TableColumn fx:id="quantiteColumn" prefWidth="90" text="Quantité" />
-                <TableColumn fx:id="disponiblesColumn" prefWidth="90" text="Disponibles" />
-                <TableColumn fx:id="statutColumn" prefWidth="90" text="Statut" />
-                <TableColumn fx:id="actionColumn" prefWidth="100" text="Actions" />
-            </columns>
+            <!-- Table responsive -->
+            <TableView fx:id="livresTable"
+                       styleClass="table-livres"
+                       VBox.vgrow="ALWAYS">
 
-        </TableView>
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" prefWidth="60"/>
+                    <TableColumn fx:id="titreColumn" text="Titre" prefWidth="180"/>
+                    <TableColumn fx:id="auteurColumn" text="Auteur" prefWidth="140"/>
+                    <TableColumn fx:id="isbnColumn" text="ISBN" prefWidth="130"/>
+                    <TableColumn fx:id="quantiteColumn" text="Quantité" prefWidth="90"/>
+                    <TableColumn fx:id="disponiblesColumn" text="Disponibles" prefWidth="90"/>
+                    <TableColumn fx:id="actionColumn" text="Actions" prefWidth="120"/>
+                </columns>
 
-    </children>
-</AnchorPane>
+            </TableView>
+
+        </VBox>
+    </center>
+
+</BorderPane>
