@@ -23,8 +23,8 @@ public class App extends Application {
             // Configurer la fenêtre
             primaryStage.setTitle("Bibliothèque UGB - Gestion");
             primaryStage.setScene(scene);
-            primaryStage.setMinWidth(1200);
-            primaryStage.setMinHeight(700);
+            // primaryStage.setMinWidth(100);
+            // primaryStage.setMinHeight(700);
             
             // Afficher
             primaryStage.show();
