@@ -1,7 +1,7 @@
 package org.example.service;
 
 import org.example.model.Utilisateur;
-import org.example.util.DbConnection;
+import org.example.util.ConnexionBD;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class UtlisateurService {
         String sql = "SELECT * FROM utilisateurs";
         int count = 0;
         try (
-                Connection con = DbConnection.getConnection();
+                Connection con =ConnexionBD.getConnexion();
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
         ) {
@@ -45,7 +45,7 @@ public class UtlisateurService {
         if (!user.getNom().isEmpty() && !user.getPrenom().isEmpty() && !user.getMatricule().isEmpty() && !user.getTypeUtilisateur().isEmpty()) {
             String sql = "insert into utilisateurs(nom,prenom,matricule,type_utilisateur) values (?,?,?,?)";
             try (
-                    Connection con = DbConnection.getConnection();
+                    Connection con = ConnexionBD.getConnexion();
                     PreparedStatement ps = con.prepareStatement(sql);
             ) {
 
@@ -69,7 +69,7 @@ public class UtlisateurService {
         int rows =0;
         String sql = "delete from utilisateurs where id_utilisateur = ?";
         try (
-                Connection con = DbConnection.getConnection();
+                Connection con = ConnexionBD.getConnexion();
                 PreparedStatement ps = con.prepareStatement(sql);
         ) {
             ps.setInt(1, id);
@@ -88,7 +88,7 @@ public class UtlisateurService {
         String sql = "select * from utilisateurs where nom = ?";
         List<Utilisateur> users = new ArrayList<>();
         try (
-                Connection con = DbConnection.getConnection();
+                Connection con = ConnexionBD.getConnexion();
                 PreparedStatement ps = con.prepareStatement(sql);
         ) {
             ps.setString(1, nom);
@@ -118,7 +118,7 @@ public class UtlisateurService {
         String sql = "select * from utilisateurs where matricule = ?";
         List<Utilisateur> users = new ArrayList<>();
         try (
-                Connection con = DbConnection.getConnection();
+                Connection con = ConnexionBD.getConnexion();
                 PreparedStatement ps = con.prepareStatement(sql);
         ) {
             ps.setString(1, matricule);
@@ -148,7 +148,7 @@ public class UtlisateurService {
         String sql = "select * from utilisateurs where id_utilisateur = ?";
         Utilisateur user = null;
         try (
-                Connection con = DbConnection.getConnection();
+                Connection con = ConnexionBD.getConnexion();
                 PreparedStatement ps = con.prepareStatement(sql);
         ) {
             ps.setInt(1, id);
@@ -179,13 +179,13 @@ public class UtlisateurService {
         int row=0;
         String sql = "update utilisateurs set nom=? ,prenom =? , type_utilisateur =? where id_utilisateur =?";
         try (
-                Connection con = DbConnection.getConnection();
+                Connection con =ConnexionBD.getConnexion();
                 PreparedStatement ps = con.prepareStatement(sql);
         ) {
             ps.setString(1, user.getNom());
             ps.setString(2, user.getPrenom());
             ps.setString(3, user.getTypeUtilisateur());
-            ps.setInt(4, user.getId());
+            ps.setInt(4, user.getIdUtilisateur());
             row = ps.executeUpdate();
 
         } catch (SQLException e) {

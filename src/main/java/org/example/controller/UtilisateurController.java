@@ -97,7 +97,7 @@ public class UtilisateurController {
                     if (user != null) {
                         System.out.println("Modifier : " + user.getNom());
                         // Appeler ta méthode de modification ici
-                        updateButton(user.getId());
+                        updateButton(user.getIdUtilisateur());
                     }
                 });
 
@@ -116,7 +116,7 @@ public class UtilisateurController {
                 btnSupprimer.setOnAction(e -> {
                     Utilisateur user = getTableView().getItems().get(getIndex());
                     if (user != null) {
-                        utilisateurService.deleteUser(user.getId());
+                        utilisateurService.deleteUser(user.getIdUtilisateur());
                         getTableView().getItems().remove(user);
                         System.out.println("Supprimer : " + user.getNom());
                     }
