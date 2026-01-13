@@ -150,7 +150,7 @@ public class BibliothequeController implements Initializable {
             }
 
             if (lbEtudiants != null && stats.containsKey("etudiants")) {
-                lbEtudiants.setText(String.valueOf(stats.get("etudiants")+" enseignants"));
+                lbEtudiants.setText(String.valueOf(stats.get("etudiants")+" etudiants"));
             }
 
             if (lbNbLivresARetouner!= null && stats.containsKey("emprunts_en_cours")) {
